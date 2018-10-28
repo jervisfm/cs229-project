@@ -2,7 +2,7 @@
 
 ## Team Members
 - Connie 
-- Min
+- Minh
 - Jervis
 
 

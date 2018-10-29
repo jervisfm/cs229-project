@@ -30,3 +30,6 @@ coverage.xml
 # virtualenv
 .venv
 .virtualenv
+
+# Data files
+data/

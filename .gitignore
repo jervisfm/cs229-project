@@ -33,3 +33,5 @@ coverage.xml
 
 # Data files
 data/
+
+.DS_Store

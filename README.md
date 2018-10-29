@@ -7,7 +7,7 @@
 	- add tensorboard
 	- add models of binaries
 - constants file
-- make data splits (train, test, dev)
+- make data splits (train, test, dev): DONE
 - change eval metric (add speed)
 - work on implementing SVM
 	- try different kernels (use Skikit-learn)
@@ -45,6 +45,17 @@ The fulldataset is big (~37GB). For initial testing, we would be using a small s
 ```
 $ ./download_minidataset.sh
 ```
+
+## Randomly select categories from list.
+
+We have a script that can randomly select categories to look at. To get 50 categories we run:
+```
+$ random_categories 50 
+```
+
+We also have a `download_projectdataset_50.sh` script that downloads the chosen 50 categories
+for the project.
+
 
 ## Initial Baseline
 time: 56.0 seconds, epoch: 1, batch size: 500

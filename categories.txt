@@ -1,0 +1,345 @@
+gs://quickdraw_dataset/full/numpy_bitmap/The Eiffel Tower.npy
+gs://quickdraw_dataset/full/numpy_bitmap/The Great Wall of China.npy
+gs://quickdraw_dataset/full/numpy_bitmap/The Mona Lisa.npy
+gs://quickdraw_dataset/full/numpy_bitmap/aircraft carrier.npy
+gs://quickdraw_dataset/full/numpy_bitmap/airplane.npy
+gs://quickdraw_dataset/full/numpy_bitmap/alarm clock.npy
+gs://quickdraw_dataset/full/numpy_bitmap/ambulance.npy
+gs://quickdraw_dataset/full/numpy_bitmap/angel.npy
+gs://quickdraw_dataset/full/numpy_bitmap/animal migration.npy
+gs://quickdraw_dataset/full/numpy_bitmap/ant.npy
+gs://quickdraw_dataset/full/numpy_bitmap/anvil.npy
+gs://quickdraw_dataset/full/numpy_bitmap/apple.npy
+gs://quickdraw_dataset/full/numpy_bitmap/arm.npy
+gs://quickdraw_dataset/full/numpy_bitmap/asparagus.npy
+gs://quickdraw_dataset/full/numpy_bitmap/axe.npy
+gs://quickdraw_dataset/full/numpy_bitmap/backpack.npy
+gs://quickdraw_dataset/full/numpy_bitmap/banana.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bandage.npy
+gs://quickdraw_dataset/full/numpy_bitmap/barn.npy
+gs://quickdraw_dataset/full/numpy_bitmap/baseball bat.npy
+gs://quickdraw_dataset/full/numpy_bitmap/baseball.npy
+gs://quickdraw_dataset/full/numpy_bitmap/basket.npy
+gs://quickdraw_dataset/full/numpy_bitmap/basketball.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bat.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bathtub.npy
+gs://quickdraw_dataset/full/numpy_bitmap/beach.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bear.npy
+gs://quickdraw_dataset/full/numpy_bitmap/beard.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bed.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bee.npy
+gs://quickdraw_dataset/full/numpy_bitmap/belt.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bench.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bicycle.npy
+gs://quickdraw_dataset/full/numpy_bitmap/binoculars.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bird.npy
+gs://quickdraw_dataset/full/numpy_bitmap/birthday cake.npy
+gs://quickdraw_dataset/full/numpy_bitmap/blackberry.npy
+gs://quickdraw_dataset/full/numpy_bitmap/blueberry.npy
+gs://quickdraw_dataset/full/numpy_bitmap/book.npy
+gs://quickdraw_dataset/full/numpy_bitmap/boomerang.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bottlecap.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bowtie.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bracelet.npy
+gs://quickdraw_dataset/full/numpy_bitmap/brain.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bread.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bridge.npy
+gs://quickdraw_dataset/full/numpy_bitmap/broccoli.npy
+gs://quickdraw_dataset/full/numpy_bitmap/broom.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bucket.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bulldozer.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bus.npy
+gs://quickdraw_dataset/full/numpy_bitmap/bush.npy
+gs://quickdraw_dataset/full/numpy_bitmap/butterfly.npy
+gs://quickdraw_dataset/full/numpy_bitmap/cactus.npy
+gs://quickdraw_dataset/full/numpy_bitmap/cake.npy
+gs://quickdraw_dataset/full/numpy_bitmap/calculator.npy
+gs://quickdraw_dataset/full/numpy_bitmap/calendar.npy
+gs://quickdraw_dataset/full/numpy_bitmap/camel.npy
+gs://quickdraw_dataset/full/numpy_bitmap/camera.npy
+gs://quickdraw_dataset/full/numpy_bitmap/camouflage.npy
+gs://quickdraw_dataset/full/numpy_bitmap/campfire.npy
+gs://quickdraw_dataset/full/numpy_bitmap/candle.npy
+gs://quickdraw_dataset/full/numpy_bitmap/cannon.npy
+gs://quickdraw_dataset/full/numpy_bitmap/canoe.npy
+gs://quickdraw_dataset/full/numpy_bitmap/car.npy
+gs://quickdraw_dataset/full/numpy_bitmap/carrot.npy
+gs://quickdraw_dataset/full/numpy_bitmap/castle.npy
+gs://quickdraw_dataset/full/numpy_bitmap/cat.npy
+gs://quickdraw_dataset/full/numpy_bitmap/ceiling fan.npy
+gs://quickdraw_dataset/full/numpy_bitmap/cell phone.npy
+gs://quickdraw_dataset/full/numpy_bitmap/cello.npy
+gs://quickdraw_dataset/full/numpy_bitmap/chair.npy
+gs://quickdraw_dataset/full/numpy_bitmap/chandelier.npy
+gs://quickdraw_dataset/full/numpy_bitmap/church.npy
+gs://quickdraw_dataset/full/numpy_bitmap/circle.npy
+gs://quickdraw_dataset/full/numpy_bitmap/clarinet.npy
+gs://quickdraw_dataset/full/numpy_bitmap/clock.npy
+gs://quickdraw_dataset/full/numpy_bitmap/cloud.npy
+gs://quickdraw_dataset/full/numpy_bitmap/coffee cup.npy
+gs://quickdraw_dataset/full/numpy_bitmap/compass.npy
+gs://quickdraw_dataset/full/numpy_bitmap/computer.npy
+gs://quickdraw_dataset/full/numpy_bitmap/cookie.npy
+gs://quickdraw_dataset/full/numpy_bitmap/cooler.npy
+gs://quickdraw_dataset/full/numpy_bitmap/couch.npy
+gs://quickdraw_dataset/full/numpy_bitmap/cow.npy
+gs://quickdraw_dataset/full/numpy_bitmap/crab.npy
+gs://quickdraw_dataset/full/numpy_bitmap/crayon.npy
+gs://quickdraw_dataset/full/numpy_bitmap/crocodile.npy
+gs://quickdraw_dataset/full/numpy_bitmap/crown.npy
+gs://quickdraw_dataset/full/numpy_bitmap/cruise ship.npy
+gs://quickdraw_dataset/full/numpy_bitmap/cup.npy
+gs://quickdraw_dataset/full/numpy_bitmap/diamond.npy
+gs://quickdraw_dataset/full/numpy_bitmap/dishwasher.npy
+gs://quickdraw_dataset/full/numpy_bitmap/diving board.npy
+gs://quickdraw_dataset/full/numpy_bitmap/dog.npy
+gs://quickdraw_dataset/full/numpy_bitmap/dolphin.npy
+gs://quickdraw_dataset/full/numpy_bitmap/donut.npy
+gs://quickdraw_dataset/full/numpy_bitmap/door.npy
+gs://quickdraw_dataset/full/numpy_bitmap/dragon.npy
+gs://quickdraw_dataset/full/numpy_bitmap/dresser.npy
+gs://quickdraw_dataset/full/numpy_bitmap/drill.npy
+gs://quickdraw_dataset/full/numpy_bitmap/drums.npy
+gs://quickdraw_dataset/full/numpy_bitmap/duck.npy
+gs://quickdraw_dataset/full/numpy_bitmap/dumbbell.npy
+gs://quickdraw_dataset/full/numpy_bitmap/ear.npy
+gs://quickdraw_dataset/full/numpy_bitmap/elbow.npy
+gs://quickdraw_dataset/full/numpy_bitmap/elephant.npy
+gs://quickdraw_dataset/full/numpy_bitmap/envelope.npy
+gs://quickdraw_dataset/full/numpy_bitmap/eraser.npy
+gs://quickdraw_dataset/full/numpy_bitmap/eye.npy
+gs://quickdraw_dataset/full/numpy_bitmap/eyeglasses.npy
+gs://quickdraw_dataset/full/numpy_bitmap/face.npy
+gs://quickdraw_dataset/full/numpy_bitmap/fan.npy
+gs://quickdraw_dataset/full/numpy_bitmap/feather.npy
+gs://quickdraw_dataset/full/numpy_bitmap/fence.npy
+gs://quickdraw_dataset/full/numpy_bitmap/finger.npy
+gs://quickdraw_dataset/full/numpy_bitmap/fire hydrant.npy
+gs://quickdraw_dataset/full/numpy_bitmap/fireplace.npy
+gs://quickdraw_dataset/full/numpy_bitmap/firetruck.npy
+gs://quickdraw_dataset/full/numpy_bitmap/fish.npy
+gs://quickdraw_dataset/full/numpy_bitmap/flamingo.npy
+gs://quickdraw_dataset/full/numpy_bitmap/flashlight.npy
+gs://quickdraw_dataset/full/numpy_bitmap/flip flops.npy
+gs://quickdraw_dataset/full/numpy_bitmap/floor lamp.npy
+gs://quickdraw_dataset/full/numpy_bitmap/flower.npy
+gs://quickdraw_dataset/full/numpy_bitmap/flying saucer.npy
+gs://quickdraw_dataset/full/numpy_bitmap/foot.npy
+gs://quickdraw_dataset/full/numpy_bitmap/fork.npy
+gs://quickdraw_dataset/full/numpy_bitmap/frog.npy
+gs://quickdraw_dataset/full/numpy_bitmap/frying pan.npy
+gs://quickdraw_dataset/full/numpy_bitmap/garden hose.npy
+gs://quickdraw_dataset/full/numpy_bitmap/garden.npy
+gs://quickdraw_dataset/full/numpy_bitmap/giraffe.npy
+gs://quickdraw_dataset/full/numpy_bitmap/goatee.npy
+gs://quickdraw_dataset/full/numpy_bitmap/golf club.npy
+gs://quickdraw_dataset/full/numpy_bitmap/grapes.npy
+gs://quickdraw_dataset/full/numpy_bitmap/grass.npy
+gs://quickdraw_dataset/full/numpy_bitmap/guitar.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hamburger.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hammer.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hand.npy
+gs://quickdraw_dataset/full/numpy_bitmap/harp.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hat.npy
+gs://quickdraw_dataset/full/numpy_bitmap/headphones.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hedgehog.npy
+gs://quickdraw_dataset/full/numpy_bitmap/helicopter.npy
+gs://quickdraw_dataset/full/numpy_bitmap/helmet.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hexagon.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hockey puck.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hockey stick.npy
+gs://quickdraw_dataset/full/numpy_bitmap/horse.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hospital.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hot air balloon.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hot dog.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hot tub.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hourglass.npy
+gs://quickdraw_dataset/full/numpy_bitmap/house plant.npy
+gs://quickdraw_dataset/full/numpy_bitmap/house.npy
+gs://quickdraw_dataset/full/numpy_bitmap/hurricane.npy
+gs://quickdraw_dataset/full/numpy_bitmap/ice cream.npy
+gs://quickdraw_dataset/full/numpy_bitmap/jacket.npy
+gs://quickdraw_dataset/full/numpy_bitmap/jail.npy
+gs://quickdraw_dataset/full/numpy_bitmap/kangaroo.npy
+gs://quickdraw_dataset/full/numpy_bitmap/key.npy
+gs://quickdraw_dataset/full/numpy_bitmap/keyboard.npy
+gs://quickdraw_dataset/full/numpy_bitmap/knee.npy
+gs://quickdraw_dataset/full/numpy_bitmap/knife.npy
+gs://quickdraw_dataset/full/numpy_bitmap/ladder.npy
+gs://quickdraw_dataset/full/numpy_bitmap/lantern.npy
+gs://quickdraw_dataset/full/numpy_bitmap/laptop.npy
+gs://quickdraw_dataset/full/numpy_bitmap/leaf.npy
+gs://quickdraw_dataset/full/numpy_bitmap/leg.npy
+gs://quickdraw_dataset/full/numpy_bitmap/light bulb.npy
+gs://quickdraw_dataset/full/numpy_bitmap/lighter.npy
+gs://quickdraw_dataset/full/numpy_bitmap/lighthouse.npy
+gs://quickdraw_dataset/full/numpy_bitmap/lightning.npy
+gs://quickdraw_dataset/full/numpy_bitmap/line.npy
+gs://quickdraw_dataset/full/numpy_bitmap/lion.npy
+gs://quickdraw_dataset/full/numpy_bitmap/lipstick.npy
+gs://quickdraw_dataset/full/numpy_bitmap/lobster.npy
+gs://quickdraw_dataset/full/numpy_bitmap/lollipop.npy
+gs://quickdraw_dataset/full/numpy_bitmap/mailbox.npy
+gs://quickdraw_dataset/full/numpy_bitmap/map.npy
+gs://quickdraw_dataset/full/numpy_bitmap/marker.npy
+gs://quickdraw_dataset/full/numpy_bitmap/matches.npy
+gs://quickdraw_dataset/full/numpy_bitmap/megaphone.npy
+gs://quickdraw_dataset/full/numpy_bitmap/mermaid.npy
+gs://quickdraw_dataset/full/numpy_bitmap/microphone.npy
+gs://quickdraw_dataset/full/numpy_bitmap/microwave.npy
+gs://quickdraw_dataset/full/numpy_bitmap/monkey.npy
+gs://quickdraw_dataset/full/numpy_bitmap/moon.npy
+gs://quickdraw_dataset/full/numpy_bitmap/mosquito.npy
+gs://quickdraw_dataset/full/numpy_bitmap/motorbike.npy
+gs://quickdraw_dataset/full/numpy_bitmap/mountain.npy
+gs://quickdraw_dataset/full/numpy_bitmap/mouse.npy
+gs://quickdraw_dataset/full/numpy_bitmap/moustache.npy
+gs://quickdraw_dataset/full/numpy_bitmap/mouth.npy
+gs://quickdraw_dataset/full/numpy_bitmap/mug.npy
+gs://quickdraw_dataset/full/numpy_bitmap/mushroom.npy
+gs://quickdraw_dataset/full/numpy_bitmap/nail.npy
+gs://quickdraw_dataset/full/numpy_bitmap/necklace.npy
+gs://quickdraw_dataset/full/numpy_bitmap/nose.npy
+gs://quickdraw_dataset/full/numpy_bitmap/ocean.npy
+gs://quickdraw_dataset/full/numpy_bitmap/octagon.npy
+gs://quickdraw_dataset/full/numpy_bitmap/octopus.npy
+gs://quickdraw_dataset/full/numpy_bitmap/onion.npy
+gs://quickdraw_dataset/full/numpy_bitmap/oven.npy
+gs://quickdraw_dataset/full/numpy_bitmap/owl.npy
+gs://quickdraw_dataset/full/numpy_bitmap/paint can.npy
+gs://quickdraw_dataset/full/numpy_bitmap/paintbrush.npy
+gs://quickdraw_dataset/full/numpy_bitmap/palm tree.npy
+gs://quickdraw_dataset/full/numpy_bitmap/panda.npy
+gs://quickdraw_dataset/full/numpy_bitmap/pants.npy
+gs://quickdraw_dataset/full/numpy_bitmap/paper clip.npy
+gs://quickdraw_dataset/full/numpy_bitmap/parachute.npy
+gs://quickdraw_dataset/full/numpy_bitmap/parrot.npy
+gs://quickdraw_dataset/full/numpy_bitmap/passport.npy
+gs://quickdraw_dataset/full/numpy_bitmap/peanut.npy
+gs://quickdraw_dataset/full/numpy_bitmap/pear.npy
+gs://quickdraw_dataset/full/numpy_bitmap/peas.npy
+gs://quickdraw_dataset/full/numpy_bitmap/pencil.npy
+gs://quickdraw_dataset/full/numpy_bitmap/penguin.npy
+gs://quickdraw_dataset/full/numpy_bitmap/piano.npy
+gs://quickdraw_dataset/full/numpy_bitmap/pickup truck.npy
+gs://quickdraw_dataset/full/numpy_bitmap/picture frame.npy
+gs://quickdraw_dataset/full/numpy_bitmap/pig.npy
+gs://quickdraw_dataset/full/numpy_bitmap/pillow.npy
+gs://quickdraw_dataset/full/numpy_bitmap/pineapple.npy
+gs://quickdraw_dataset/full/numpy_bitmap/pizza.npy
+gs://quickdraw_dataset/full/numpy_bitmap/pliers.npy
+gs://quickdraw_dataset/full/numpy_bitmap/police car.npy
+gs://quickdraw_dataset/full/numpy_bitmap/pond.npy
+gs://quickdraw_dataset/full/numpy_bitmap/pool.npy
+gs://quickdraw_dataset/full/numpy_bitmap/popsicle.npy
+gs://quickdraw_dataset/full/numpy_bitmap/postcard.npy
+gs://quickdraw_dataset/full/numpy_bitmap/potato.npy
+gs://quickdraw_dataset/full/numpy_bitmap/power outlet.npy
+gs://quickdraw_dataset/full/numpy_bitmap/purse.npy
+gs://quickdraw_dataset/full/numpy_bitmap/rabbit.npy
+gs://quickdraw_dataset/full/numpy_bitmap/raccoon.npy
+gs://quickdraw_dataset/full/numpy_bitmap/radio.npy
+gs://quickdraw_dataset/full/numpy_bitmap/rain.npy
+gs://quickdraw_dataset/full/numpy_bitmap/rainbow.npy
+gs://quickdraw_dataset/full/numpy_bitmap/rake.npy
+gs://quickdraw_dataset/full/numpy_bitmap/remote control.npy
+gs://quickdraw_dataset/full/numpy_bitmap/rhinoceros.npy
+gs://quickdraw_dataset/full/numpy_bitmap/rifle.npy
+gs://quickdraw_dataset/full/numpy_bitmap/river.npy
+gs://quickdraw_dataset/full/numpy_bitmap/roller coaster.npy
+gs://quickdraw_dataset/full/numpy_bitmap/rollerskates.npy
+gs://quickdraw_dataset/full/numpy_bitmap/sailboat.npy
+gs://quickdraw_dataset/full/numpy_bitmap/sandwich.npy
+gs://quickdraw_dataset/full/numpy_bitmap/saw.npy
+gs://quickdraw_dataset/full/numpy_bitmap/saxophone.npy
+gs://quickdraw_dataset/full/numpy_bitmap/school bus.npy
+gs://quickdraw_dataset/full/numpy_bitmap/scissors.npy
+gs://quickdraw_dataset/full/numpy_bitmap/scorpion.npy
+gs://quickdraw_dataset/full/numpy_bitmap/screwdriver.npy
+gs://quickdraw_dataset/full/numpy_bitmap/sea turtle.npy
+gs://quickdraw_dataset/full/numpy_bitmap/see saw.npy
+gs://quickdraw_dataset/full/numpy_bitmap/shark.npy
+gs://quickdraw_dataset/full/numpy_bitmap/sheep.npy
+gs://quickdraw_dataset/full/numpy_bitmap/shoe.npy
+gs://quickdraw_dataset/full/numpy_bitmap/shorts.npy
+gs://quickdraw_dataset/full/numpy_bitmap/shovel.npy
+gs://quickdraw_dataset/full/numpy_bitmap/sink.npy
+gs://quickdraw_dataset/full/numpy_bitmap/skateboard.npy
+gs://quickdraw_dataset/full/numpy_bitmap/skull.npy
+gs://quickdraw_dataset/full/numpy_bitmap/skyscraper.npy
+gs://quickdraw_dataset/full/numpy_bitmap/sleeping bag.npy
+gs://quickdraw_dataset/full/numpy_bitmap/smiley face.npy
+gs://quickdraw_dataset/full/numpy_bitmap/snail.npy
+gs://quickdraw_dataset/full/numpy_bitmap/snake.npy
+gs://quickdraw_dataset/full/numpy_bitmap/snorkel.npy
+gs://quickdraw_dataset/full/numpy_bitmap/snowflake.npy
+gs://quickdraw_dataset/full/numpy_bitmap/snowman.npy
+gs://quickdraw_dataset/full/numpy_bitmap/soccer ball.npy
+gs://quickdraw_dataset/full/numpy_bitmap/sock.npy
+gs://quickdraw_dataset/full/numpy_bitmap/speedboat.npy
+gs://quickdraw_dataset/full/numpy_bitmap/spider.npy
+gs://quickdraw_dataset/full/numpy_bitmap/spoon.npy
+gs://quickdraw_dataset/full/numpy_bitmap/spreadsheet.npy
+gs://quickdraw_dataset/full/numpy_bitmap/square.npy
+gs://quickdraw_dataset/full/numpy_bitmap/squiggle.npy
+gs://quickdraw_dataset/full/numpy_bitmap/squirrel.npy
+gs://quickdraw_dataset/full/numpy_bitmap/stairs.npy
+gs://quickdraw_dataset/full/numpy_bitmap/star.npy
+gs://quickdraw_dataset/full/numpy_bitmap/steak.npy
+gs://quickdraw_dataset/full/numpy_bitmap/stereo.npy
+gs://quickdraw_dataset/full/numpy_bitmap/stethoscope.npy
+gs://quickdraw_dataset/full/numpy_bitmap/stitches.npy
+gs://quickdraw_dataset/full/numpy_bitmap/stop sign.npy
+gs://quickdraw_dataset/full/numpy_bitmap/stove.npy
+gs://quickdraw_dataset/full/numpy_bitmap/strawberry.npy
+gs://quickdraw_dataset/full/numpy_bitmap/streetlight.npy
+gs://quickdraw_dataset/full/numpy_bitmap/string bean.npy
+gs://quickdraw_dataset/full/numpy_bitmap/submarine.npy
+gs://quickdraw_dataset/full/numpy_bitmap/suitcase.npy
+gs://quickdraw_dataset/full/numpy_bitmap/sun.npy
+gs://quickdraw_dataset/full/numpy_bitmap/swan.npy
+gs://quickdraw_dataset/full/numpy_bitmap/sweater.npy
+gs://quickdraw_dataset/full/numpy_bitmap/swing set.npy
+gs://quickdraw_dataset/full/numpy_bitmap/sword.npy
+gs://quickdraw_dataset/full/numpy_bitmap/syringe.npy
+gs://quickdraw_dataset/full/numpy_bitmap/t-shirt.npy
+gs://quickdraw_dataset/full/numpy_bitmap/table.npy
+gs://quickdraw_dataset/full/numpy_bitmap/teapot.npy
+gs://quickdraw_dataset/full/numpy_bitmap/teddy-bear.npy
+gs://quickdraw_dataset/full/numpy_bitmap/telephone.npy
+gs://quickdraw_dataset/full/numpy_bitmap/television.npy
+gs://quickdraw_dataset/full/numpy_bitmap/tennis racquet.npy
+gs://quickdraw_dataset/full/numpy_bitmap/tent.npy
+gs://quickdraw_dataset/full/numpy_bitmap/tiger.npy
+gs://quickdraw_dataset/full/numpy_bitmap/toaster.npy
+gs://quickdraw_dataset/full/numpy_bitmap/toe.npy
+gs://quickdraw_dataset/full/numpy_bitmap/toilet.npy
+gs://quickdraw_dataset/full/numpy_bitmap/tooth.npy
+gs://quickdraw_dataset/full/numpy_bitmap/toothbrush.npy
+gs://quickdraw_dataset/full/numpy_bitmap/toothpaste.npy
+gs://quickdraw_dataset/full/numpy_bitmap/tornado.npy
+gs://quickdraw_dataset/full/numpy_bitmap/tractor.npy
+gs://quickdraw_dataset/full/numpy_bitmap/traffic light.npy
+gs://quickdraw_dataset/full/numpy_bitmap/train.npy
+gs://quickdraw_dataset/full/numpy_bitmap/tree.npy
+gs://quickdraw_dataset/full/numpy_bitmap/triangle.npy
+gs://quickdraw_dataset/full/numpy_bitmap/trombone.npy
+gs://quickdraw_dataset/full/numpy_bitmap/truck.npy
+gs://quickdraw_dataset/full/numpy_bitmap/trumpet.npy
+gs://quickdraw_dataset/full/numpy_bitmap/umbrella.npy
+gs://quickdraw_dataset/full/numpy_bitmap/underwear.npy
+gs://quickdraw_dataset/full/numpy_bitmap/van.npy
+gs://quickdraw_dataset/full/numpy_bitmap/vase.npy
+gs://quickdraw_dataset/full/numpy_bitmap/violin.npy
+gs://quickdraw_dataset/full/numpy_bitmap/washing machine.npy
+gs://quickdraw_dataset/full/numpy_bitmap/watermelon.npy
+gs://quickdraw_dataset/full/numpy_bitmap/waterslide.npy
+gs://quickdraw_dataset/full/numpy_bitmap/whale.npy
+gs://quickdraw_dataset/full/numpy_bitmap/wheel.npy
+gs://quickdraw_dataset/full/numpy_bitmap/windmill.npy
+gs://quickdraw_dataset/full/numpy_bitmap/wine bottle.npy
+gs://quickdraw_dataset/full/numpy_bitmap/wine glass.npy
+gs://quickdraw_dataset/full/numpy_bitmap/wristwatch.npy
+gs://quickdraw_dataset/full/numpy_bitmap/yoga.npy
+gs://quickdraw_dataset/full/numpy_bitmap/zebra.npy
+gs://quickdraw_dataset/full/numpy_bitmap/zigzag.npy

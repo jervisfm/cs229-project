@@ -54,11 +54,21 @@ class massageData():
 		# - Split eval piece 50/50 to get dev/test sets which each makes 10% of the overall data.
 
 		random_seed = 42
-		self.X_train, self.X_eval, self.y_train, self.y_eval = train_test_split(self.X, self.Y, test_size = 0.2, random_state = random_seed)
+		self.X_train, self.X_eval, self.y_train, self.y_eval = train_test_split(self.X, self.Y, test_size=0.2,
+																				random_state=random_seed)
 
-		self.X_dev, self.X_test, self.y_dev, self.y_test = train_test_split(self.X_eval, self.y_eval, test_size=0.5, random_state=random_seed)
+
+		self.X_dev, self.X_test, self.y_dev, self.y_test = train_test_split(self.X_eval, self.y_eval, test_size=0.5,
 
 
+																			random_state=random_seed)
+
+
+
+		print("All: ", self.X.shape)
+		print("train: ", self.X_train.shape)
+		print("Test: ", self.X_test.shape)
+		print("Dev: ", self.X_dev.shape)
 
 
 def main():

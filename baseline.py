@@ -11,7 +11,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.pipeline import Pipeline
 
 from massageData import massageData
-# TODO: make split (train, test, dev)
+# TODO(jmuindi): make split (train, test, dev)
 CLASS_NUM = 3
 
 def baseline_model():

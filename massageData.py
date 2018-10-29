@@ -1,6 +1,8 @@
 import numpy as np
 import os
 
+from sklearn.model_selection import train_test_split
+
 # Dimension for the input feature bitmap vectors.
 BITMAP_DIM = 784
 
@@ -12,15 +14,15 @@ class massageData():
 
 	def getTrain(self):
 		""" Returns a tuple x,y for the training dataset. """
-		pass
+		return (self.X_train, self.y_train)
 
 	def getTest(self):
 		""" Returns a tuple x,y for the test dataset. """
-		pass
+		return (self.X_test, self.y_test)
 
 	def getDev(self):
 		""" Returns a tuple of x,y for the developmetn dataset. """
-		pass
+		return (self.X_dev, self.y_dev)
 
 	def __init__(self, folder='data/numpy_bitmap/'):
 		"""
@@ -45,6 +47,19 @@ class massageData():
 			self.X = np.concatenate((self.X, x), axis=0)
 			self.Y += y
 		self.Y = np.array(self.Y)
+
+		# Split into train / test / dev. We use a split ratio of 80% train, 10% dev, 10% test.
+		# To get the 3 pieces, we'll do the splits as follows:
+		# - Split dataset into 80/20 train/eval to get train set.
+		# - Split eval piece 50/50 to get dev/test sets which each makes 10% of the overall data.
+
+		random_seed = 42
+		self.X_train, self.X_eval, self.y_train, self.y_eval = train_test_split(self.X, self.Y, test_size = 0.2, random_state = random_seed)
+
+		self.X_dev, self.X_test, self.y_dev, self.y_test = train_test_split(self.X_eval, self.y_eval, test_size=0.5, random_state=random_seed)
+
+
+
 
 def main():
 	data = massageData()

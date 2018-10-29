@@ -49,7 +49,7 @@ def main():
     print ("Done preprocessing dataset")
 
     # build the model
-    estimator = KerasClassifier(build_fn=baseline_model, epochs=200, batch_size=5, verbose=0)
+    estimator = KerasClassifier(build_fn=baseline_model, epochs=1, batch_size=500, verbose=1)
 
     print ("Done building estimator")
 

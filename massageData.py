@@ -10,6 +10,16 @@ class massageData():
 		return self.Y
 	
 	def __init__(self, folder='data/numpy_bitmap/'):
+		"""
+		Creates is new instsance of massageData.
+
+		This class is responsible for loading in the image datase and generating
+
+        Arguments:
+		- folder: Path to the folder with the npy image array data. Important
+		Path should end with a '/' at the end.
+		If not set, defaults to 'data/numpy_bitmap/'
+		"""
 		self.folder = folder
 		self.X = np.zeros((0, 784))
 		self.Y = []

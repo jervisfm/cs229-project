@@ -10,7 +10,7 @@ from sklearn.model_selection import KFold
 from sklearn.preprocessing import LabelEncoder
 from sklearn.pipeline import Pipeline
 
-from massageData import massageData
+import massageData
 # TODO(jmuindi): make split (train, test, dev)
 CLASS_NUM = 3
 
@@ -31,7 +31,7 @@ def main():
     numpy.random.seed(seed)
 
     # load dataset
-    data = massageData()
+    data = massageData.massageData()
     X = data.getX()
     Y = data.getY()
     print ("Done load dataset")

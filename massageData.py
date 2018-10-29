@@ -1,8 +1,11 @@
 import numpy as np
 import os
 
+# Dimension for the input feature bitmap vectors.
+BITMAP_DIM = 784
+
 class massageData():
-	BITMAP_DIM = 784
+
 	def getX(self):
 		return self.X
 
@@ -21,7 +24,7 @@ class massageData():
 		If not set, defaults to 'data/numpy_bitmap/'
 		"""
 		self.folder = folder
-		self.X = np.zeros((0, 784))
+		self.X = np.zeros((0, BITMAP_DIM))
 		self.Y = []
 		for filename in os.listdir(self.folder):
 			fullpath = self.folder + filename

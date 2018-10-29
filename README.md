@@ -3,10 +3,15 @@
 ## TODO
 - decide number of classes (try 50)
 	- update script
-- add tensorboard
+- add visuals
+	- add tensorboard
+	- add models of binaries
 - constants file
 - make data splits (train, test, dev)
-- change eval metric
+- change eval metric (add speed)
+- work on implementing SVM
+	- try different kernels (use Skikit-learn)
+	- figure out parameters
 
 ## Team Members
 - Connie 
@@ -37,7 +42,6 @@ $ ./download_fulldataset.sh
 ```
 
 The fulldataset is big (~37GB). For initial testing, we would be using a small subset. 
-
 ```
 $ ./download_minidataset.sh
 ```

@@ -9,28 +9,15 @@ from sklearn.model_selection import KFold
 from sklearn.preprocessing import LabelEncoder
 from sklearn.pipeline import Pipeline
 
-# import massageData
-
-# return 
-# getX(train/dev/test) -> give you 
-# getY(train/dev/test)
-
-# ignore dev/test for now
-
-
-# Class: take in data/numpy_bitmap
-
-# output 
-
-
-
+from massageData import massageData
+# TODO: make split (train, test, dev)
+CLASS_NUM = 3
 
 def baseline_model():
     # create model
     model = Sequential()
-    # TODO: change 1st dense to 1, change activation to sigmoid
-    model.add(Dense(8, input_dim=4, activation='relu'))
-    model.add(Dense(3, activation='softmax'))
+    model.add(Dense(1, input_dim=massageData.BITMAP_DIM, activation='sigmoid'))
+    model.add(Dense(CLASS_NUM, activation='softmax'))
     # Compile model
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
@@ -44,15 +31,9 @@ def main():
 
 
     # load dataset
-    dataframe = pandas.read_csv("irisTutorial/iris.csv", header=None)
-    dataset = dataframe.values
-    X = dataset[:,0:4].astype(float)
-    print ('X')
-    print (X)
-    Y = dataset[:,4]
-    print ('Y')
-    print (Y)
-
+    data = massageData()
+    X = data.getX()
+    Y = data.getY()
     print ("Done load dataset")
 
     #TODO: from 3 files, create the label and combine to 1 training data file

@@ -1,8 +1,8 @@
 import numpy as np
 import os
 
-
 class massageData():
+	BITMAP_DIM = 784
 	def getX(self):
 		return self.X
 
@@ -19,9 +19,7 @@ class massageData():
 			name = filename[:-4]
 			x = np.load(fullpath)
 			y = [name] * x.shape[0]
-			# print(self.X)
 			self.X = np.concatenate((self.X, x), axis=0)
-			# print(self.X)
 			self.Y += y
 		self.Y = np.array(self.Y)
 

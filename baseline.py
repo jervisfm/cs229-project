@@ -32,8 +32,8 @@ def main():
 
     # load dataset
     data = massageData.massageData()
-    X = data.getX()
-    Y = data.getY()
+    X, Y = data.getData()
+
     print ("Done load dataset")
 
     # do some more preprocessing

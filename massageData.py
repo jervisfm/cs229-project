@@ -6,12 +6,22 @@ BITMAP_DIM = 784
 
 class massageData():
 
-	def getX(self):
-		return self.X
+	def getData(self):
+		""" Returns the full dataset. This is 100% of the loaded data. """
+		return (self.X, self.Y)
 
-	def getY(self):
-		return self.Y
-	
+	def getTrain(self):
+		""" Returns a tuple x,y for the training dataset. """
+		pass
+
+	def getTest(self):
+		""" Returns a tuple x,y for the test dataset. """
+		pass
+
+	def getDev(self):
+		""" Returns a tuple of x,y for the developmetn dataset. """
+		pass
+
 	def __init__(self, folder='data/numpy_bitmap/'):
 		"""
 		Creates is new instsance of massageData.
@@ -28,7 +38,7 @@ class massageData():
 		self.Y = []
 		for filename in os.listdir(self.folder):
 			fullpath = self.folder + filename
-			# use filename as Y
+			# use filename as Y label.
 			name = filename[:-4]
 			x = np.load(fullpath)
 			y = [name] * x.shape[0]

@@ -25,5 +25,12 @@ $ gcloud init
 
 * Download all the image drawings from the dataset.
 ```
-$ ./download_dataset.sh
+$ ./download_fulldataset.sh
 ```
+
+The fulldataset is big (~37GB). For initial testing, we would be using a small subset. 
+
+```
+$ ./download_minidataset.sh
+```
+

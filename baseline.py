@@ -1,5 +1,6 @@
 import numpy
 import pandas
+import time
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.wrappers.scikit_learn import KerasClassifier
@@ -24,19 +25,16 @@ def baseline_model():
 
 def main():
     print ("Done loading the libraries")
+    t0 = time.time()
     # fix random seed for reproducibility
     seed = 7
     numpy.random.seed(seed)
-
-
 
     # load dataset
     data = massageData()
     X = data.getX()
     Y = data.getY()
     print ("Done load dataset")
-
-    #TODO: from 3 files, create the label and combine to 1 training data file
 
     # do some more preprocessing
     # encode class values as integers
@@ -49,13 +47,15 @@ def main():
     print ("Done preprocessing dataset")
 
     # build the model
-    estimator = KerasClassifier(build_fn=baseline_model, epochs=1, batch_size=500, verbose=1)
+    estimator = KerasClassifier(build_fn=baseline_model, epochs=10, batch_size=500, verbose=1)
 
     print ("Done building estimator")
 
     kfold = KFold(n_splits=2, shuffle=True, random_state=seed)
 
     results = cross_val_score(estimator, X, dummy_y, cv=kfold)
+    t1 = time.time()
+    print("Time elapsed: ", t1 - t0)
     print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
 
 if __name__ == '__main__':

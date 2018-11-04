@@ -4,9 +4,9 @@
 - decide number of classes (try 50)
 	- update script
 - add visuals
-	- add tensorboard
+	<s>- add tensorboard</s>
 	- add models of binaries
-- constants file
+<s>- constants file</s>
 - make data splits (train, test, dev): DONE
 - change eval metric (add speed)
 - work on implementing SVM

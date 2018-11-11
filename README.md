@@ -4,9 +4,9 @@
 - decide number of classes (try 50)
 	- update script
 - add visuals
-	- add tensorboard
+	- <s>add tensorboard</s>
 	- add models of binaries
-- constants file
+- <s>constants file</s>
 - make data splits (train, test, dev): DONE
 - change eval metric (add speed)
 - work on implementing SVM
@@ -56,6 +56,12 @@ $ random_categories 50
 We also have a `download_projectdataset_50.sh` script that downloads the chosen 50 categories
 for the project.
 
+## Tensorboard Shortcuts
+Run
+```
+tensorboard --logdir=logs/
+```
+Go to: http://localhost:6006
 
 ## Initial Baseline
 time: 56.0 seconds, epoch: 1, batch size: 500

@@ -123,3 +123,30 @@ Epoch 10/10
 Time elapsed:  103.03788709640503
 Baseline: 61.02% (10.07%)
 ```
+
+## SkLearn Baseline
+Tested against 10 classes.
+```
+(finalProject) bash-3.2$ python baselinev2.py
+/Users/jmuindi/miniconda3/envs/finalProject/lib/python3.6/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+All:  (1316034, 784)
+train:  (1052824, 784)
+Test:  (131607, 784)
+Dev:  (131603, 784)
+/Users/jmuindi/miniconda3/envs/finalProject/lib/python3.6/site-packages/sklearn/linear_model/logistic.py:757: ConvergenceWarning: lbfgs failed to converge. Increase the number of iterations.
+  "of iterations.", ConvergenceWarning)
+Prediction:  ['squirrel' 'panda' 'squirrel' ... 'lighter' 'lighter' 'paint can']
+Actual Label:  ['squirrel' 'squirrel' 'squirrel' ... 'lighter' 'lighter' 'lighter']
+Accuracy:  0.6518316451752619
+Confusion matrix:  [[ 6789    59   397    70   112   402   296  1542   794  1189]
+ [  161 10019  1781   152    79    68   125    57   273   296]
+ [  256  1641 12135   547   255   332   208   422  1253   398]
+ [  129   134   244  9613   884   410   170   139   176   227]
+ [  244   171   540  1013  8593   580   511   248   228   217]
+ [  239    38   928   450   701  6556   434   560  1129   326]
+ [ 1072   359   739   232   405  1143  6625   910  1232   751]
+ [ 1590    16   511    22   215   389   407  7478   725   635]
+ [  830   218   966   127   167   836   645   712 10863   324]
+ [ 1628   180   997   194   210   462   570   782   384  7112]]
+```

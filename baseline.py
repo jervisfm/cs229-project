@@ -18,6 +18,16 @@ import myConstants as mc
 
 CLASS_NUM = 3
 
+def encode_values(encoder, Y):
+    encoder.fit(Y)
+    encoded_Y = encoder.transform(Y)
+    # convert integers to dummy variables (i.e. one hot encoded)
+    dummy_y = np_utils.to_categorical(encoded_Y)
+    return dummy_y
+
+def decode_values(encoder, dummy_y):
+    return encoder.inverse_transform(dummy_y)
+
 def baseline_model():
     # create model
     model = Sequential()
@@ -36,23 +46,27 @@ def main():
 
     # load dataset
     data = massageData.massageData()
-    X, Y = data.getData()
+    X, Y = data.getTrain()
+    X_dev, Y_dev = data.getDev()
 
     print ("Done load dataset")
 
     # do some more preprocessing
     # encode class values as integers
     encoder = LabelEncoder()
-    encoder.fit(Y)
-    encoded_Y = encoder.transform(Y)
-    # convert integers to dummy variables (i.e. one hot encoded)
-    dummy_y = np_utils.to_categorical(encoded_Y)
+    dummy_y = encode_values(encoder, Y)
+    dummy_y_dev = encode_values(encoder, Y_dev)
 
     print ("Done preprocessing dataset")
 
     # build the model
     tensorboard = TensorBoard()
     estimator = KerasClassifier(build_fn=baseline_model, epochs=10, batch_size=500, verbose=1)
+    # estimator.fit(X, Y)
+    dummy_y_pred_dev = estimator.predict(X_dev)
+
+    # print("predictions ", estimator.predict(X_dev))
+    # print("actual output ", Y_dev)
 
     print ("Done building estimator")
 
@@ -60,6 +74,7 @@ def main():
 
     results = cross_val_score(estimator, X, dummy_y, cv=kfold, verbose=1, fit_params={'callbacks': [tensorboard]})
     t1 = time.time()
+
     print("Time elapsed: ", t1 - t0)
     print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
 

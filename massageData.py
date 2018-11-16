@@ -59,6 +59,7 @@ class massageData():
 		for index, filename in enumerate(os.listdir(self.folder)):
 			fullpath = self.folder + filename
 			# use filename as Y label.
+			print("Processing file #: {} - Name={}".format(index, filename))
 			name = filename[:-4]
 			x = np.load(fullpath)
 			y = [name] * x.shape[0]

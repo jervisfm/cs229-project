@@ -54,7 +54,7 @@ def run():
     dataGetter = massageData.massageData()
     X_train, Y_train = dataGetter.getTrain()
     X_dev, Y_dev = dataGetter.getDev()
-    clf = LogisticRegression(random_state=0, solver='lbfgs', multi_class='multinomial', verbose=1).fit(X_train, Y_train)
+    clf = LogisticRegression(random_state=0, solver='lbfgs', multi_class='multinomial', verbose=10, n_jobs=-1).fit(X_train, Y_train)
     Y_dev_prediction = clf.predict(X_dev)
     print ('Prediction: ', Y_dev_prediction)
     print ('Actual Label: ', Y_dev)

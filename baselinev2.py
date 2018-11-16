@@ -61,7 +61,7 @@ def run():
     print ('Accuracy: ', clf.score(X_dev, Y_dev))
     class_names = get_label(Y_dev)
     confusion = confusion_matrix(Y_dev, Y_dev_prediction, labels=class_names)
-    print ("Confusion matrix: ", confusion_matrix)
+    print ("Confusion matrix: ", confusion)
     pickle.dumps(class_names, "class_names")
     pickle.dumps(confusion, "confusion_matrix_3class")
     

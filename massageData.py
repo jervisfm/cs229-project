@@ -56,15 +56,16 @@ class massageData():
 		self.y_test = []
 
 		random_seed = 42
-		for filename in os.listdir(self.folder):
+		for index, filename in enumerate(os.listdir(self.folder)):
+                        print("Loading dataset file #{} - {} ".format(index, filename))
 			fullpath = self.folder + filename
 			# use filename as Y label.
 			name = filename[:-4]
 			x = np.load(fullpath)
 			y = [name] * x.shape[0]
 			# Full dataset.
-			self.X = np.concatenate((self.X, x), axis=0)
-			self.Y += y
+			#self.X = np.concatenate((self.X, x), axis=0)
+			#self.Y += y
 
 			# Split into train/test/dev. See also comment above.
 			X_train, X_eval, y_train, y_eval = train_test_split(x, y, test_size=0.2,random_state=random_seed)

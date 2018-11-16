@@ -57,7 +57,6 @@ class massageData():
 
 		random_seed = 42
 		for index, filename in enumerate(os.listdir(self.folder)):
-                        print("Loading dataset file #{} - {} ".format(index, filename))
 			fullpath = self.folder + filename
 			# use filename as Y label.
 			name = filename[:-4]

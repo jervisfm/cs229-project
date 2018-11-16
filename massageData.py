@@ -56,12 +56,15 @@ class massageData():
 		self.y_test = []
 
 		random_seed = 42
+		max_num_examples_per_class = 70000
 		for index, filename in enumerate(os.listdir(self.folder)):
 			fullpath = self.folder + filename
 			# use filename as Y label.
 			print("Processing file #: {} - Name={}".format(index, filename))
 			name = filename[:-4]
 			x = np.load(fullpath)
+			x = x[:max_num_examples_per_class,:]
+			print("X has shape", x.shape)
 			y = [name] * x.shape[0]
 			# Full dataset.
 			#self.X = np.concatenate((self.X, x), axis=0)

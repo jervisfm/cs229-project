@@ -62,13 +62,13 @@ def run():
     class_names = get_label(Y_dev)
     confusion = confusion_matrix(Y_dev, Y_dev_prediction, labels=class_names)
     print ("Confusion matrix: ", confusion)
-    pickle.dumps(class_names, "class_names")
-    pickle.dumps(confusion, "confusion_matrix_3class")
+    pickle.dump(class_names, open("class_names", wb))
+    pickle.dump(confusion, open("confusion_matrix_nclass", wb))
     
 
 def main():
-    class_names = pickle.loads("class_names")
-    confusion = pickle.loads("confusion_matrix_3class")
+    class_names = pickle.load(open("class_names", rb))
+    confusion = pickle.load(open("confusion_matrix_nclass", rb))
 
     np.set_printoptions(precision=2)
 
@@ -89,4 +89,4 @@ def main():
 
 if __name__ == '__main__':
     run()
-    #main()
+    main()

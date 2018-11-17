@@ -1,7 +1,9 @@
 import time
 import itertools
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use("TkAgg") # why?
+from matplotlib import pyplot as plt
 import pickle
 import numpy as np
 
@@ -52,7 +54,7 @@ def get_label(Y):
 
 def run():
     dataGetter = massageData.massageData()
-    X_train, Y_train = dataGetter.getTrain()
+    X_train, Y_train = dataGetter.getTrain() #TODO: feature extractions
     X_dev, Y_dev = dataGetter.getDev()
     clf = LogisticRegression(random_state=0, solver='lbfgs', multi_class='multinomial', verbose=1).fit(X_train, Y_train)
     Y_dev_prediction = clf.predict(X_dev)
@@ -61,15 +63,23 @@ def run():
     print ('Accuracy: ', clf.score(X_dev, Y_dev))
     class_names = get_label(Y_dev)
     confusion = confusion_matrix(Y_dev, Y_dev_prediction, labels=class_names)
-    print ("Confusion matrix: ", confusion_matrix)
-    pickle.dumps(class_names, "class_names")
-    pickle.dumps(confusion, "confusion_matrix_3class")
-    
+    print ("Confusion matrix: ", confusion)
+
+    pickle.dump(class_names, open("class_names", 'wb'))
+    pickle.dump(confusion, open("confusion_matrix_3class", 'wb'))
 
 def main():
-    class_names = pickle.loads("class_names")
-    confusion = pickle.loads("confusion_matrix_3class")
+    print ('Opening the files...')
+    with open("class_names", 'rb') as f:
+        class_names = pickle.load(f)
 
+    with open("confusion_matrix_3class", 'rb') as f:
+        confusion = pickle.load(f)
+
+    print ('Finish reading the files...')
+
+    print ('Class names: {}'.format(class_names))
+    print ('Confusion matrix: {}'.format(confusion))
     np.set_printoptions(precision=2)
 
     # Plot non-normalized confusion matrix
@@ -77,10 +87,10 @@ def main():
     plot_confusion_matrix(confusion, classes=class_names,
                           title='Confusion matrix, without normalization')
 
-    # Plot normalized confusion matrix
-    plt.figure()
-    plot_confusion_matrix(confusion, classes=class_names, normalize=True,
-                          title='Normalized confusion matrix')
+    # # Plot normalized confusion matrix
+    # plt.figure()
+    # plot_confusion_matrix(confusion, classes=class_names, normalize=True,
+    #                       title='Normalized confusion matrix')
 
     plt.show()
 
@@ -88,5 +98,5 @@ def main():
 
 
 if __name__ == '__main__':
-    run()
+    #run()
     main()

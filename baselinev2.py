@@ -9,6 +9,9 @@ from sklearn.metrics import confusion_matrix
 import massageData
 import utils
 
+class_file_name = 'class_names_50class_baselinev2'
+confusion_file_name = 'confusion_matrix_50class_baselinev2'
+
 def run():
     dataGetter = massageData.massageData()
     X_train, Y_train = dataGetter.getTrain() #TODO: feature extractions
@@ -27,13 +30,13 @@ def run():
     pickle.dump(confusion, open("confusion_matrix_nclass_lr", 'wb'))
     
 def main():
-    class_names = pickle.load(open("class_names_lr", 'rb'))
-    confusion = pickle.load(open("confusion_matrix_nclass_lr", 'rb'))
+    class_names = pickle.load(open(class_file_name, 'rb'))[:10]
+    confusion = pickle.load(open(confusion_file_name, 'rb'))[:10,:10]
     utils.create_confusion_matrices(class_names, confusion)
 
 #TODO: want to scale this up to 10 classes: add more file, compare runtime
 
 
 if __name__ == '__main__':
-    run()
+    #run()
     main()

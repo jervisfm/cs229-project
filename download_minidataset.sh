@@ -6,8 +6,8 @@ echo "Downloading quickdraw dataset from Google. This will take a moment ..."
 mkdir -p data/numpy_bitmap
 
 
-CATEGORIES="airplane
-apple
+CATEGORIES="eraser
+belt
 banana"
 
 for category in $CATEGORIES

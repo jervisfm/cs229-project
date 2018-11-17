@@ -67,7 +67,7 @@ def main():
     confusion = pickle.load(open(get_confusion_matrix_filename(), 'rb'))[:10,:10]
     utils.create_confusion_matrices(class_names, confusion)
 
-#TODO: want to scale this up to 10 classes: add more file, compare runtime
+
 
 
 if __name__ == '__main__':

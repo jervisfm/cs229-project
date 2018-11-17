@@ -6,16 +6,13 @@ import pickle
 import massageData
 import utils
 
-def kernel_svm():
-    pass
-
-def main():
+def kernel_svm(*args):
     dataGetter = massageData.massageData()
     X_train, Y_train = dataGetter.getTrain()
     X_dev, Y_dev = dataGetter.getDev()
 
     print("Starting Linear SVM training ...")
-    clf = svm.SVC(kernel='linear', verbose=1)
+    clf = svm.SVC(args)
     clf.fit(X_train, Y_train)
     print("Trained")
 
@@ -31,6 +28,12 @@ def main():
     pickle.dump(class_names, open("class_names_svm_l", 'wb'))
     pickle.dump(confusion, open("confusion_matrix_nclass_svm_l", 'wb'))
     utils.create_confusion_matrices(class_names, confusion)
+
+def main():
+    kernel_svm(kernel='linear', verbose=1)
+    kernel_svm(kernel='polynomial', degree=, coef0=, verbose=1)
+    kernel_svm(kernel='rbf', gamma=, verbose=1)
+    kernel_svm(kernel='sigmoid', coef0=, verbose=1)
 
 if __name__ == '__main__':
     main()

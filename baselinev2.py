@@ -12,7 +12,7 @@ import tensorflow as tf
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 
-flags.DEFINE_integer('max_steps', 100, 'Number of steps to run trainer.')
+flags.DEFINE_integer('max_iter', 100, 'Number of steps to run trainer.')
 flags.DEFINE_string('data_folder', 'data/numpy_bitmap/', 'Directory which has training data to use')
 flags.DEFINE_string('experiment_name', None, 'Name for the experiment. Useful to tagging files')
 
@@ -42,7 +42,12 @@ def run():
     X_dev, Y_dev = dataGetter.getDev()
     start_time_secs = time.time()
     print("Starting Logistic Regression training ...")
-    clf = LogisticRegression(random_state=0, solver='lbfgs', multi_class='multinomial', verbose=10, n_jobs=-1).fit(X_train, Y_train)
+    clf = LogisticRegression(random_state=0,
+                             solver='lbfgs',
+                             multi_class='multinomial',
+                             verbose=10,
+                             n_jobs=-1,
+                             max_iter=FLAGS.max_iter).fit(X_train, Y_train)
     print("Training done.")
     end_time_secs = time.time()
     training_duration_secs = end_time_secs - start_time_secs

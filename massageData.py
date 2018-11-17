@@ -1,6 +1,6 @@
 import numpy as np
 import os
-import myConstants as mc
+import utils
 
 from sklearn.model_selection import train_test_split
 
@@ -34,7 +34,7 @@ class massageData():
                 If not set, defaults to 'data/numpy_bitmap/'
                 """
                 self.folder = folder
-                self.X = np.zeros((0, mc.BITMAP_DIM))
+                self.X = np.zeros((0, utils.BITMAP_DIM))
                 self.Y = []
 
                 # Split into train / test / dev. We use a split ratio of 80% train, 10% dev, 10% test.
@@ -46,13 +46,13 @@ class massageData():
                 # will do the split for each categories (e.g. airplane) as we load it. This avoids any
                 # potential issues train/test/dev splits not being fairly balanced.
 
-                self.X_train = np.zeros((0, mc.BITMAP_DIM))
+                self.X_train = np.zeros((0, utils.BITMAP_DIM))
                 self.y_train = []
 
-                self.X_dev = np.zeros((0, mc.BITMAP_DIM))
+                self.X_dev = np.zeros((0, utils.BITMAP_DIM))
                 self.y_dev = []
 
-                self.X_test= np.zeros((0, mc.BITMAP_DIM))
+                self.X_test= np.zeros((0, utils.BITMAP_DIM))
                 self.y_test = []
 
                 random_seed = 42

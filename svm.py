@@ -7,6 +7,7 @@ import massageData
 import utils
 
 def kernel_svm(**args):
+    print(args)
     dataGetter = massageData.massageData()
     X_train, Y_train = dataGetter.getTrain()
     X_dev, Y_dev = dataGetter.getDev()
@@ -27,7 +28,8 @@ def kernel_svm(**args):
     print ("Confusion matrix: ", confusion)
     pickle.dump(class_names, open("class_names_svm_l", 'wb'))
     pickle.dump(confusion, open("confusion_matrix_nclass_svm_l", 'wb'))
-    utils.create_confusion_matrices(class_names, confusion)
+    file_name = "cm_" + args['kernel']
+    utils.create_confusion_matrices(class_names, confusion, file_name)
 
 def main():
     kernel_svm(kernel='linear', verbose=1, max_iter=1)

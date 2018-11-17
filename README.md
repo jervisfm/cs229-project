@@ -63,6 +63,44 @@ tensorboard --logdir=logs/
 ```
 Go to: http://localhost:6006
 
+## Google cloud setup
+We have a Google VM for our deep learning experiments. Our common user is cs229.
+
+To access it run, the following command at the shell.
+```
+$ gcloud compute ssh --project cs229-2018 --zone "us-west1-b" cs229@cs229-vm-vm
+```
+
+You can set cs229-2018 as the default project for gcloud so you don't have to set it
+each time by running
+```
+$ gcloud config set project cs229-2018
+```
+
+Then you can ssh into the VM with:
+
+```
+$ gcloud compute ssh --project cs229-2018 --zone "us-west1-b" cs229@cs229-vm-vm
+```
+
+We also use GNU screen for session management. To check for list of available sessions
+run 
+```
+$ screen -ls
+```
+
+We usually have a single `cs229` session that we all share. To attach to this session, just
+run 
+```
+$ screen -x cs229
+```
+
+Some helpful screen commands:
+* Open a new window in session - Ctrl + A, c
+* Go to next window in session - Ctrl + A, n
+* Go to previous window in session - Ctrl + A, p
+
+
 ## Initial Baseline
 time: 56.0 seconds, epoch: 1, batch size: 500
 
@@ -149,4 +187,14 @@ Confusion matrix:  [[ 6789    59   397    70   112   402   296  1542   794  1189
  [ 1590    16   511    22   215   389   407  7478   725   635]
  [  830   218   966   127   167   836   645   712 10863   324]
  [ 1628   180   997   194   210   462   570   782   384  7112]]
+```
+
+## SkLearn LinearSVC
+3 classes
+```
+Accuracy:  0.7943621164624299
+Confusion matrix:  
+[[10896   175   579]
+ [  679 11569   763]
+ [ 2637  3826 10984]]
 ```

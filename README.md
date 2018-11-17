@@ -63,6 +63,15 @@ tensorboard --logdir=logs/
 ```
 Go to: http://localhost:6006
 
+## Google cloud setup
+We have a Google VM for our deep learning experiments. Our common user is cs229.
+
+To access it run, the following command at the shell.
+```
+gcloud compute ssh --zone "us-west1-b" cs229@cs229-vm-vm
+```
+
+
 ## Initial Baseline
 time: 56.0 seconds, epoch: 1, batch size: 500
 
@@ -150,3 +159,4 @@ Confusion matrix:  [[ 6789    59   397    70   112   402   296  1542   794  1189
  [  830   218   966   127   167   836   645   712 10863   324]
  [ 1628   180   997   194   210   462   570   782   384  7112]]
 ```
+

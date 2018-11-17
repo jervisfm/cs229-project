@@ -6,13 +6,16 @@ import pickle
 import massageData
 import utils
 
+def kernel_svm():
+    pass
+
 def main():
     dataGetter = massageData.massageData()
     X_train, Y_train = dataGetter.getTrain()
     X_dev, Y_dev = dataGetter.getDev()
 
     print("Starting Linear SVM training ...")
-    clf = svm.LinearSVC(verbose=1)
+    clf = svm.SVC(kernel='linear', verbose=1)
     clf.fit(X_train, Y_train)
     print("Trained")
 

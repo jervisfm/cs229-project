@@ -49,11 +49,11 @@ def run():
     Y_dev_prediction = clf.predict(X_dev)
 
     accuracy = clf.score(X_dev, Y_dev)
-    experiment_result_string = ""
-    experiment_result_string += "Prediction: {}".format(Y_dev_prediction)
-    experiment_result_string += "Actual Label: {}".format(Y_dev)
-    experiment_result_string += "Acurracy: {}".format(accuracy)
-    experiment_result_string += "Training time(secs): {}".format(training_duration_secs)
+    experiment_result_string = "-------------------\n"
+    experiment_result_string += "\nPrediction: {}".format(Y_dev_prediction)
+    experiment_result_string += "\nActual Label: {}".format(Y_dev)
+    experiment_result_string += "\nAcurracy: {}".format(accuracy)
+    experiment_result_string += "\nTraining time(secs): {}".format(training_duration_secs)
     print(experiment_result_string)
 
     class_names = utils.get_label(Y_dev)

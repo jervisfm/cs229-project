@@ -14,7 +14,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.pipeline import Pipeline
 
 import massageData
-import myConstants as mc
+import utils
 from sklearn.metrics import confusion_matrix
 
 CLASS_NUM = 4
@@ -36,7 +36,7 @@ def decode_values(encoder, dummy_y):
 def baseline_model():
     # create model
     model = Sequential()
-    model.add(Dense(1, input_dim=mc.BITMAP_DIM, activation='sigmoid'))
+    model.add(Dense(1, input_dim=utils.BITMAP_DIM, activation='sigmoid'))
     model.add(Dense(CLASS_NUM, activation='softmax'))
     # Compile model
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])

@@ -2,6 +2,7 @@ import time
 import itertools
 import numpy as np
 import pickle
+import os
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
@@ -13,7 +14,8 @@ flags = tf.app.flags
 FLAGS = flags.FLAGS
 
 flags.DEFINE_integer('max_iter', 100, 'Number of steps to run trainer.')
-flags.DEFINE_string('data_folder', 'data/numpy_bitmap/', 'Directory which has training data to use')
+flags.DEFINE_string('data_folder', 'data/numpy_bitmap/', 'Directory which has training data to use. Must have / at end.')
+flags.DEFINE_string('results_folder', 'results/', 'Folder to store result outputs from run.')
 flags.DEFINE_string('experiment_name', None, 'Name for the experiment. Useful to tagging files')
 
 import massageData
@@ -27,15 +29,18 @@ def get_suffix_name():
 
 def get_class_filename():
     suffix_name = get_suffix_name()
-    return "{}{}".format(class_file_name, suffix_name)
+    filename = "{}{}".format(class_file_name, suffix_name)
+    return os.path.join(FLAGS.results_folder, filename)
 
 def get_confusion_matrix_filename():
     suffix_name = get_suffix_name()
-    return "{}{}".format(confusion_file_name, suffix_name)
+    filename  = "{}{}".format(confusion_file_name, suffix_name)
+    return os.path.join(FLAGS.results_folder, filename)
 
 def get_experiment_report_filename():
     suffix_name = get_suffix_name()
-    return "{}{}".format("baselinev2_lr_results", suffix_name)
+    filename =  "{}{}".format("baselinev2_lr_results", suffix_name)
+    return os.path.join(FLAGS.results_folder, filename)
 
 def write_contents_to_file(output_file, input_string):
     with open(output_file, 'w') as file_handle:

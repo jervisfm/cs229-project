@@ -5,7 +5,7 @@ import pickle
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
-
+from sklearn.metrics import classification_report
 
 import tensorflow as tf
 
@@ -54,15 +54,24 @@ def run():
     Y_dev_prediction = clf.predict(X_dev)
 
     accuracy = clf.score(X_dev, Y_dev)
+
     experiment_result_string = "-------------------\n"
     experiment_result_string += "\nPrediction: {}".format(Y_dev_prediction)
     experiment_result_string += "\nActual Label: {}".format(Y_dev)
     experiment_result_string += "\nAcurracy: {}".format(accuracy)
     experiment_result_string += "\nTraining time(secs): {}".format(training_duration_secs)
-    print(experiment_result_string)
+
+
 
     class_names = utils.get_label(Y_dev)
+    classification_report_string = classification_report(Y_dev, Y_dev_prediction, target_names=class_names)
+    experiment_result_string += "\nClassification report: {}".format(classification_report_string)
+
+    print(experiment_result_string)
+
     confusion = confusion_matrix(Y_dev, Y_dev_prediction, labels=class_names)
+
+
     print ("Confusion matrix: ", confusion)
     pickle.dump(class_names, open(get_class_filename(), 'wb'))
     pickle.dump(confusion, open(get_confusion_matrix_filename(), 'wb'))

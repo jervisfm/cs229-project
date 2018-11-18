@@ -194,23 +194,44 @@ Confusion matrix:  [[ 6789    59   397    70   112   402   296  1542   794  1189
 
 Linear
 ```
-Prediction: ['eraser' 'eraser' 'eraser' ... 'banana' 'banana' 'banana']
+Prediction: ['banana' 'eraser' 'eraser' ... 'banana' 'banana' 'belt']
 Actual Label: ['banana' 'banana' 'banana' ... 'belt' 'belt' 'belt']
-Acurracy: 0.414380952381
-Training time(secs): 199.068641186
+Acurracy: 0.407952380952
+Training time(secs): 204.221334934
 ('Labels: ', ['banana', 'eraser', 'belt'])
-('Confusion matrix: ', array([[3914, 2580,  506],
-       [3545, 2688,  767],
-       [3612, 1288, 2100]]))
+('Confusion matrix: ', array([[3437, 3432,  131],
+       [2728, 2942, 1330],
+       [3360, 1452, 2188]]))
 Confusion matrix, without normalization
-[[3914 2580  506]
- [3545 2688  767]
- [3612 1288 2100]]
+[[3437 3432  131]
+ [2728 2942 1330]
+ [3360 1452 2188]]
 Normalized confusion matrix
-[[0.56 0.37 0.07]
- [0.51 0.38 0.11]
- [0.52 0.18 0.3 ]]
+[[0.49 0.49 0.02]
+ [0.39 0.42 0.19]
+ [0.48 0.21 0.31]]
 ```
+
+Polynomial
+```
+Prediction: ['banana' 'banana' 'banana' ... 'belt' 'belt' 'eraser']
+Actual Label: ['banana' 'banana' 'banana' ... 'belt' 'belt' 'belt']
+Acurracy: 0.516952380952
+Training time(secs): 447.517017126
+('Labels: ', ['banana', 'eraser', 'belt'])
+('Confusion matrix: ', array([[5492,  260, 1248],
+       [3976, 1482, 1542],
+       [2301,  817, 3882]]))
+Confusion matrix, without normalization
+[[5492  260 1248]
+ [3976 1482 1542]
+ [2301  817 3882]]
+Normalized confusion matrix
+[[0.78 0.04 0.18]
+ [0.57 0.21 0.22]
+ [0.33 0.12 0.55]]
+```
+
 RBF
 ```
 Prediction: ['banana' 'banana' 'banana' ... 'belt' 'eraser' 'belt']
@@ -229,4 +250,23 @@ Normalized confusion matrix
 [[9.51e-01 1.43e-04 4.89e-02]
  [5.23e-01 1.27e-02 4.64e-01]
  [7.73e-02 6.00e-03 9.17e-01]]
+```
+Sigmoid
+```
+Prediction: ['eraser' 'eraser' 'eraser' ... 'eraser' 'eraser' 'eraser']
+Actual Label: ['banana' 'banana' 'banana' ... 'belt' 'belt' 'belt']
+Acurracy: 0.330761904762
+Training time(secs): 478.207917929
+('Labels: ', ['banana', 'eraser', 'belt'])
+('Confusion matrix: ', array([[   0, 6589,  411],
+       [   2, 6916,   82],
+       [   2, 6968,   30]]))
+Confusion matrix, without normalization
+[[   0 6589  411]
+ [   2 6916   82]
+ [   2 6968   30]]
+Normalized confusion matrix
+[[0.00e+00 9.41e-01 5.87e-02]
+ [2.86e-04 9.88e-01 1.17e-02]
+ [2.86e-04 9.95e-01 4.29e-03]]
 ```

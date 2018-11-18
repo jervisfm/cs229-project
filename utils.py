@@ -19,12 +19,12 @@ def create_confusion_matrices(class_names, confusion, file_name):
     fig1 = plt.figure()
     plot_confusion_matrix(confusion, classes=class_names,
                           title='Confusion matrix, without normalization')
-    fig1.savefig(file_name + '.png')
+    fig1.savefig('cm_imgs/' + file_name + '.png')
     # Plot normalized confusion matrix
     fig2 = plt.figure()
     plot_confusion_matrix(confusion, classes=class_names, normalize=True,
                           title='Normalized confusion matrix')
-    fig2.savefig(file_name + '_norm.png')
+    fig2.savefig('cm_imgs/' + file_name + '_norm.png')
 
 def plot_confusion_matrix(cm, classes,
                           normalize=False,

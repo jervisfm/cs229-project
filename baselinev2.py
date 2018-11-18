@@ -32,6 +32,9 @@ def get_class_filename():
     filename = "{}{}".format(class_file_name, suffix_name)
     return os.path.join(FLAGS.results_folder, filename)
 
+def get_confusion_matrix_name():
+    return "{}{}".format(confusion_file_name, get_suffix_name())
+
 def get_confusion_matrix_filename():
     suffix_name = get_suffix_name()
     filename  = "{}{}".format(confusion_file_name, suffix_name)
@@ -94,7 +97,7 @@ def run():
 def main():
     class_names = pickle.load(open(get_class_filename(), 'rb'))[:10]
     confusion = pickle.load(open(get_confusion_matrix_filename(), 'rb'))[:10,:10]
-    utils.create_confusion_matrices(class_names, confusion)
+    utils.create_confusion_matrices(class_names, confusion, get_confusion_matrix_name())
 
 
 

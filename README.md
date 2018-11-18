@@ -189,12 +189,24 @@ Confusion matrix:  [[ 6789    59   397    70   112   402   296  1542   794  1189
  [ 1628   180   997   194   210   462   570   782   384  7112]]
 ```
 
-## SkLearn LinearSVC
-3 classes
+## SkLearn SVC
+#Linear
+3 classes, 500 iters
 ```
-Accuracy:  0.7943621164624299
-Confusion matrix:  
-[[10896   175   579]
- [  679 11569   763]
- [ 2637  3826 10984]]
+Prediction: ['eraser' 'eraser' 'eraser' ... 'banana' 'banana' 'banana']
+Actual Label: ['banana' 'banana' 'banana' ... 'belt' 'belt' 'belt']
+Acurracy: 0.414380952381
+Training time(secs): 199.068641186
+('Labels: ', ['banana', 'eraser', 'belt'])
+('Confusion matrix: ', array([[3914, 2580,  506],
+       [3545, 2688,  767],
+       [3612, 1288, 2100]]))
+Confusion matrix, without normalization
+[[3914 2580  506]
+ [3545 2688  767]
+ [3612 1288 2100]]
+Normalized confusion matrix
+[[0.56 0.37 0.07]
+ [0.51 0.38 0.11]
+ [0.52 0.18 0.3 ]]
 ```

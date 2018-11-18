@@ -38,7 +38,7 @@ def get_experiment_report_filename():
     return "{}{}".format("baselinev2_lr_results", suffix_name)
 
 def write_contents_to_file(output_file, input_string):
-    with open(output_file) as file_handle:
+    with open(output_file, 'w') as file_handle:
         file_handle.write(input_string)
 
 

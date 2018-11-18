@@ -25,7 +25,7 @@ class_file_name = 'class_names_baselinev2_lr'
 confusion_file_name = 'confusion_matrix_baselinev2_lr'
 
 def get_suffix_name():
-    return "_" + FLAGS.experiment if FLAGS.experiment_name else ""
+    return "_" + FLAGS.experiment_name if FLAGS.experiment_name else ""
 
 def get_class_filename():
     suffix_name = get_suffix_name()

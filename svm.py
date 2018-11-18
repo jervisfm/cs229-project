@@ -1,6 +1,7 @@
 import time
 from sklearn import svm
 from sklearn.metrics import confusion_matrix
+from sklearn.preprocessing import MinMaxScaler
 import pickle
 
 import massageData
@@ -11,6 +12,10 @@ def kernel_svm(**args):
     dataGetter = massageData.massageData()
     X_train, Y_train = dataGetter.getTrain()
     X_dev, Y_dev = dataGetter.getDev()
+    
+    scaling = MinMaxScaler(feature_range=(-1,1)).fit(X_train)
+    X_train = scaling.transform(X_train)
+    X_dev = scaling.transform(X_dev)
 
     print("Starting " + args['kernel'] + " SVM training ...")
     start_time_secs = time.time()

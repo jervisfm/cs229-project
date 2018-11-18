@@ -12,7 +12,7 @@ def kernel_svm(**args):
     X_train, Y_train = dataGetter.getTrain()
     X_dev, Y_dev = dataGetter.getDev()
 
-    print("Starting Linear SVM training ...")
+    print("Starting " + args['kernel'] + " SVM training ...")
     start_time_secs = time.time()
     clf = svm.SVC(**args)
     clf.fit(X_train, Y_train)
@@ -40,7 +40,7 @@ def kernel_svm(**args):
 
 def main():
     kernel_svm(kernel='linear', verbose=1, max_iter=500)
-    kernel_svm(kernel='polynomial', degree=5, coef0=1, verbose=1, max_iter=500)
+    kernel_svm(kernel='poly', degree=5, coef0=1, verbose=1, max_iter=500)
     kernel_svm(kernel='rbf', gamma=1, verbose=1, max_iter=500)
     kernel_svm(kernel='sigmoid', coef0=1, verbose=1, max_iter=500)
 

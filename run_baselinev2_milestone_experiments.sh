@@ -10,15 +10,15 @@
 
 MAX_ITER=100
 echo "Running baseline on 3 classes !"
-python baselinev2.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_3/
+python baselinev2.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_3/ --experiment_name="3_classes"
 
 # Run experiment on 10 classes
 echo "Running baseline on 10 classes !"
-python baselinev2.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_10/
+python baselinev2.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_10/ --experiment_name="10_classes"
 
 # Run experiment on 50 classes
 echo "Running baseline on 50 classes !"
-python baselinev2.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_50/
+python baselinev2.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_50/ --experiment_name="50_classes"
 
 # All done
 echo "All done !"

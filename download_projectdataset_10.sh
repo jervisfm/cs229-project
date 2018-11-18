@@ -8,16 +8,16 @@ IFS=$'\n'
 echo "Downloading quickdraw dataset from Google. This will take a moment ..."
 mkdir -p data/numpy_bitmap
 
-CATEGORIES="squirrel
-paint can
-stitches
-lighter
-panda
-hockey stick
-kangaroo
+CATEGORIES="laptop
 rain
-sea turtle
-aircraft carrier"
+hockey stick
+wristwatch
+nose
+pond
+The Mona Lisa
+banana
+panda
+paint can"
 
 for category in $CATEGORIES
 do

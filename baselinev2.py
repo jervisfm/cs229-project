@@ -45,11 +45,6 @@ def get_experiment_report_filename():
     filename =  "{}{}".format("baselinev2_lr_results", suffix_name)
     return os.path.join(FLAGS.results_folder, filename)
 
-def write_contents_to_file(output_file, input_string):
-    with open(output_file, 'w') as file_handle:
-        file_handle.write(input_string)
-
-
 def run():
     print("folder = ", FLAGS.data_folder)
 
@@ -87,7 +82,7 @@ def run():
     print(experiment_result_string)
 
     # Save report to file
-    write_contents_to_file(get_experiment_report_filename(), experiment_result_string)
+    utils.write_contents_to_file(get_experiment_report_filename(), experiment_result_string)
     confusion = confusion_matrix(Y_dev, Y_dev_prediction, labels=class_names)
 
     print ("Confusion matrix: ", confusion)

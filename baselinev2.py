@@ -33,6 +33,15 @@ def get_confusion_matrix_filename():
     suffix_name = get_suffix_name()
     return "{}{}".format(confusion_file_name, suffix_name)
 
+def get_experiment_report_filename():
+    suffix_name = get_suffix_name()
+    return "{}{}".format("baselinev2_lr_results", suffix_name)
+
+def write_contents_to_file(output_file, input_string):
+    with open(output_file) as file_handle:
+        file_handle.write(input_string)
+
+
 def run():
     print("folder = ", FLAGS.data_folder)
 
@@ -60,8 +69,8 @@ def run():
     experiment_result_string += "\nActual Label: {}".format(Y_dev)
     experiment_result_string += "\nAcurracy: {}".format(accuracy)
     experiment_result_string += "\nTraining time(secs): {}".format(training_duration_secs)
-
-
+    experiment_result_string += "\nMax training iterations: {}".format(FLAGS.max_iter)
+    experiment_result_string += "\nTraining time / Max training iterations: {}".format( 1.0 * training_duration_secs / FLAGS.max_iter)
 
     class_names = utils.get_label(Y_dev)
     classification_report_string = classification_report(Y_dev, Y_dev_prediction, target_names=class_names)
@@ -69,8 +78,9 @@ def run():
 
     print(experiment_result_string)
 
+    # Save report to file
+    write_contents_to_file(get_experiment_report_filename(), experiment_result_string)
     confusion = confusion_matrix(Y_dev, Y_dev_prediction, labels=class_names)
-
 
     print ("Confusion matrix: ", confusion)
     pickle.dump(class_names, open(get_class_filename(), 'wb'))

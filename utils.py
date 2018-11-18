@@ -59,3 +59,8 @@ def plot_confusion_matrix(cm, classes,
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
     plt.tight_layout()
+
+
+def write_contents_to_file(output_file, input_string):
+    with open(output_file, 'w') as file_handle:
+        file_handle.write(input_string)

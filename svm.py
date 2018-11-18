@@ -40,9 +40,9 @@ def kernel_svm(**args):
 
 def main():
     kernel_svm(kernel='linear', verbose=1, max_iter=500)
-    #kernel_svm(kernel='polynomial', degree=, coef0=, verbose=1)
-    #kernel_svm(kernel='rbf', gamma=, verbose=1)
-    #kernel_svm(kernel='sigmoid', coef0=, verbose=1)
+    kernel_svm(kernel='polynomial', degree=5, coef0=1, verbose=1, max_iter=500)
+    kernel_svm(kernel='rbf', gamma=1, verbose=1, max_iter=500)
+    kernel_svm(kernel='sigmoid', coef0=1, verbose=1, max_iter=500)
 
 if __name__ == '__main__':
     main()

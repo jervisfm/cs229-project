@@ -1,0 +1,24 @@
+-------------------
+
+Prediction: ['kangaroo' 'squirrel' 'squirrel' ... 'sea turtle' 'sea turtle'
+ 'sea turtle']
+Actual Label: ['squirrel' 'squirrel' 'squirrel' ... 'sea turtle' 'sea turtle'
+ 'sea turtle']
+Acurracy: 0.646414285714
+Training time(secs): 121.448840857
+Max training iterations: 100
+Training time / Max training iterations: 1.21448840857
+Classification report:                   precision    recall  f1-score   support
+
+        squirrel       0.54      0.61      0.57      7000
+      sea turtle       0.78      0.80      0.79      7000
+        kangaroo       0.60      0.64      0.62      7000
+       paint can       0.77      0.80      0.78      7000
+            rain       0.74      0.69      0.72      7000
+         lighter       0.59      0.60      0.60      7000
+    hockey stick       0.64      0.48      0.55      7000
+           panda       0.58      0.64      0.61      7000
+aircraft carrier       0.61      0.65      0.63      7000
+        stitches       0.62      0.56      0.59      7000
+
+     avg / total       0.65      0.65      0.65     70000

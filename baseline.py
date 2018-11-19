@@ -15,9 +15,10 @@ from sklearn.pipeline import Pipeline
 
 import massageData
 import utils
+
 from sklearn.metrics import confusion_matrix
 
-CLASS_NUM = 4
+CLASS_NUM = 3
 
 def encode_values(encoder, Y):
     # Use train y to encode
@@ -89,6 +90,7 @@ def main():
     print("Time elapsed: ", t1 - t0)
     # print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
 
+    print("dummy y dev", dummy_y_pred_dev.shape)
     print ("Confusion matrix", confusion_matrix(Y_dev, decode_values(encoder, dummy_y_pred_dev)))
 
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 import numpy as np
 import pandas
 import time
+import random
 
 from keras.models import Sequential
 from keras.layers import Dense
@@ -67,6 +68,7 @@ def main():
     # fix random seed for reproducibility
     seed = 7
     np.random.seed(seed)
+    random.seed(seed)
 
     # load dataset
     data = massageData.massageData()
@@ -102,6 +104,7 @@ def main():
     cnn_model.fit(X, dummy_y, epochs=10, batch_size=50, verbose=1)
     # evaluate the model
     scores = cnn_model.evaluate(X_dev, dummy_y_dev,  verbose=0)
+    print("Cnn model metrics", cnn_model.metrics_names)
     print("%s: %.2f%%" % (cnn_model.metrics_names[1], scores[1] * 100))
 
     # serialize model to JSON

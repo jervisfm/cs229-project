@@ -24,7 +24,7 @@ import massageData
 import utils
 from sklearn.metrics import confusion_matrix
 
-CLASS_NUM = 3
+CLASS_NUM = 50
 
 model_filename = 'simple_cnn_keras_model'
 def encode_values(encoder, Y, forConfusionMatrix=False):
@@ -121,7 +121,7 @@ def main():
     tensorboard = TensorBoard()
 
     cnn_model = model()
-    cnn_model.fit(X, dummy_y, epochs=1, batch_size=50, verbose=1)
+    cnn_model.fit(X, dummy_y, epochs=100, batch_size=500, verbose=1)
     dummy_y_pred_dev = cnn_model.predict(X_dev)
 
     # Need to take argmax to find most likely class.
@@ -135,10 +135,10 @@ def main():
     # serialize model to JSON
     # TODO: make this configurable.
     model_json = cnn_model.to_json()
-    with open("cnn_model.json", "w") as json_file:
+    with open("cnn_model_50.json", "w") as json_file:
         json_file.write(model_json)
     # serialize weights to HDF5
-    cnn_model.save_weights("cnn_model_weights.keras")
+    cnn_model.save_weights("cnn_model_weights_50.keras")
     print("Saved model to disk")
 
 
@@ -159,6 +159,6 @@ def main():
 
     print("Dummy y pred dev class", dummy_y_pred_dev_class[0])
     print ("Confusion matrix", confusion_matrix(dummy_y_dev_confusion_matrix, dummy_y_pred_dev_class))
-
+    
 if __name__ == '__main__':
     main()

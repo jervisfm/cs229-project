@@ -17,7 +17,7 @@ import massageData
 import utils
 from sklearn.metrics import confusion_matrix
 
-CLASS_NUM = 4
+CLASS_NUM = 3
 
 def encode_values(encoder, Y):
     # Use train y to encode

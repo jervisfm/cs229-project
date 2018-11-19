@@ -40,7 +40,7 @@ def kernel_svm(**args):
     print ("Confusion matrix: ", confusion)
     pickle.dump(class_names, open("class_names_svm_l", 'wb'))
     pickle.dump(confusion, open("confusion_matrix_nclass_svm_l", 'wb'))
-    file_name = "cm_svm_" + args['kernel']
+    file_name = "cm_svm_10_" + args['kernel']
     utils.create_confusion_matrices(class_names, confusion, file_name)
 
 def main():

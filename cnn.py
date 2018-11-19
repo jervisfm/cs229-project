@@ -3,6 +3,7 @@ import pandas
 import time
 import random
 
+import pickle
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.wrappers.scikit_learn import KerasClassifier
@@ -94,6 +95,7 @@ def main():
     X, Y = data.getTrain()
     X_dev, Y_dev = data.getDev()
 
+    class_names = utils.get_label(Y_dev)
     # Reshape to CNN format (M, 28, 28, 1) from (M, 784)
     print("X shape before:", X.shape)
     X = X.reshape((-1, 28, 28, 1))
@@ -158,7 +160,10 @@ def main():
 
 
     print("Dummy y pred dev class", dummy_y_pred_dev_class[0])
-    print ("Confusion matrix", confusion_matrix(dummy_y_dev_confusion_matrix, dummy_y_pred_dev_class))
+    conf_matrix = confusion_matrix(dummy_y_dev_confusion_matrix, dummy_y_pred_dev_class)
+    print ("Confusion matrix", conf_matrix)
+    pickle.dump(class_names, open('cnn_50class', 'wb'))
+    pickle.dump(conf_matrix, open('cnn_confusion_matrix_50class', 'wb'))
     
 if __name__ == '__main__':
     main()

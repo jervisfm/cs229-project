@@ -25,6 +25,7 @@ from sklearn.metrics import confusion_matrix
 
 CLASS_NUM = 3
 
+model_filename = 'simple_cnn_keras_model'
 def encode_values(encoder, Y):
     # Use train y to encode
     encoder.fit(Y)
@@ -96,12 +97,23 @@ def main():
 
     # build the model
     tensorboard = TensorBoard()
-    estimator = KerasClassifier(build_fn=model, epochs=10, batch_size=500, verbose=1)
-    print ('Y passing into model: ', dummy_y)
-    estimator.fit(X, dummy_y)
-    dummy_y_pred_dev = estimator.predict(X_dev)
 
-    print ("Dummy y predict (should be one long vector of number): {}".format(dummy_y_pred_dev))
+    cnn_model = model()
+    cnn_model.fit(X, dummy_y, epochs=10, batch_size=50, verbose=1)
+    # evaluate the model
+    scores = cnn_model.evaluate(X_dev, dummy_y_dev,  verbose=0)
+    print("%s: %.2f%%" % (cnn_model.metrics_names[1], scores[1] * 100))
+
+    # serialize model to JSON
+    # TODO: make this configurable.
+    model_json = cnn_model.to_json()
+    with open("cnn_model.json", "w") as json_file:
+        json_file.write(model_json)
+    # serialize weights to HDF5
+    cnn_model.save_weights("cnn_model_weights.keras")
+    print("Saved model to disk")
+
+
 
     # print("predictions ", estimator.predict(X_dev))
     # print("actual output ", Y_dev)

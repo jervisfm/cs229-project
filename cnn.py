@@ -13,6 +13,7 @@ from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
 
+
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import KFold
 from sklearn.preprocessing import LabelEncoder
@@ -70,6 +71,15 @@ def main():
     data = massageData.massageData()
     X, Y = data.getTrain()
     X_dev, Y_dev = data.getDev()
+
+    # Reshape to CNN format (M, 28, 28, 1) from (M, 784)
+    print("X shape before:", X.shape)
+    X = X.reshape((-1, 28, 28, 1))
+    print("X shape after: ", X.shape)
+
+    print("X dev shape before:", X_dev.shape)
+    X_dev = X_dev.reshape((-1, 28, 28, 1))
+    print("X dev shape after: ", X_dev.shape)
 
     print ("Done load dataset")
 

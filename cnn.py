@@ -27,13 +27,19 @@ from sklearn.metrics import confusion_matrix
 CLASS_NUM = 3
 
 model_filename = 'simple_cnn_keras_model'
-def encode_values(encoder, Y):
+def encode_values(encoder, Y, forConfusionMatrix=False):
     # Use train y to encode
     encoder.fit(Y)
     encoded_Y = encoder.transform(Y)
     # convert integers to dummy variables (i.e. one hot encoded)
-    dummy_y = np_utils.to_categorical(encoded_Y)
-    return dummy_y
+    if not forConfusionMatrix:
+        # Want 1-hot for training
+        dummy_y = np_utils.to_categorical(encoded_Y)
+        return dummy_y
+    else:
+        # Want the class labels (numbers) for confusion.
+        return encoded_Y
+
     # return encoded_Y
 
 def decode_values(encoder, dummy_y):
@@ -61,6 +67,19 @@ def model():
     # Compiling the CNN
     classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return classifier
+
+def get_onehot_vector(index, num_classes):
+    result = np.zeros(num_classes)
+    result[index] = 1
+    return result
+
+def convert_predictions_to_onehot(predictions, num_classes):
+    num_examples = predictions.shape[0]
+    result = np.zeros((num_examples, num_classes))
+    for i in range(num_examples):
+        result[i] = get_onehot_vector(predictions[i], num_classes)
+    return result
+
 
 def main():
     print ("Done loading the libraries")
@@ -92,6 +111,7 @@ def main():
     # dummy_y will be one-hot encoding of classes
     dummy_y = encode_values(encoder, Y)
     dummy_y_dev = encode_values(encoder, Y_dev)
+    dummy_y_dev_confusion_matrix = encode_values(encoder, Y_dev, forConfusionMatrix=True)
 
     print ('Dummy_y (should be one vector if class numbers):', dummy_y)
 
@@ -101,7 +121,12 @@ def main():
     tensorboard = TensorBoard()
 
     cnn_model = model()
-    cnn_model.fit(X, dummy_y, epochs=10, batch_size=50, verbose=1)
+    cnn_model.fit(X, dummy_y, epochs=1, batch_size=50, verbose=1)
+    dummy_y_pred_dev = cnn_model.predict(X_dev)
+
+    # Need to take argmax to find most likely class.
+    dummy_y_pred_dev_class = dummy_y_pred_dev.argmax(axis=-1)
+
     # evaluate the model
     scores = cnn_model.evaluate(X_dev, dummy_y_dev,  verbose=0)
     print("Cnn model metrics", cnn_model.metrics_names)
@@ -131,7 +156,9 @@ def main():
     print("Time elapsed: ", t1 - t0)
     # print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
 
-    print ("Confusion matrix", confusion_matrix(Y_dev, decode_values(encoder, dummy_y_pred_dev)))
+
+    print("Dummy y pred dev class", dummy_y_pred_dev_class[0])
+    print ("Confusion matrix", confusion_matrix(dummy_y_dev_confusion_matrix, dummy_y_pred_dev_class))
 
 if __name__ == '__main__':
     main()

@@ -53,6 +53,10 @@ screwdriver
 broccoli
 finger
 teddy-bear
+umbrella
+trumpet
+snake
+star
 The Mona Lisa"
 
 for category in $CATEGORIES

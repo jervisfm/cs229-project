@@ -7,6 +7,11 @@ from keras.layers import Dense
 from keras.wrappers.scikit_learn import KerasClassifier
 from keras.utils import np_utils
 from keras.callbacks import TensorBoard
+from keras.models import Sequential
+from keras.layers import Conv2D
+from keras.layers import MaxPooling2D
+from keras.layers import Flatten
+from keras.layers import Dense
 
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import KFold
@@ -33,14 +38,26 @@ def decode_values(encoder, dummy_y):
     # return encoder.inverse_transform(encoded_Y)
     return encoder.inverse_transform(dummy_y)
 
-def baseline_model():
-    # create model
-    model = Sequential()
-    model.add(Dense(1, input_dim=utils.BITMAP_DIM, activation='sigmoid'))
-    model.add(Dense(CLASS_NUM, activation='softmax'))
-    # Compile model
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    return model
+def model():
+    # Based on code snippets from https://becominghuman.ai/building-an-image-classifier-using-deep-learning-in-python-totally-from-a-beginners-perspective-be8dbaf22dd8
+
+    # Initialising the CNN
+    classifier = Sequential()
+    # Step 1 - Convolution
+    classifier.add(Conv2D(14, (3, 3), input_shape=(28, 28, 1), activation='relu'))
+    # Step 2 - Pooling
+    classifier.add(MaxPooling2D(pool_size=(2, 2)))
+    # Adding a second convolutional layer
+    classifier.add(Conv2D(14, (3, 3), activation='relu'))
+    classifier.add(MaxPooling2D(pool_size=(2, 2)))
+    # Step 3 - Flattening
+    classifier.add(Flatten())
+    # Step 4 - Full connection
+    classifier.add(Dense(units=128, activation='relu'))
+    classifier.add(Dense(CLASS_NUM, activation='softmax'))
+    # Compiling the CNN
+    classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+    return classifier
 
 def main():
     print ("Done loading the libraries")
@@ -69,7 +86,7 @@ def main():
 
     # build the model
     tensorboard = TensorBoard()
-    estimator = KerasClassifier(build_fn=baseline_model, epochs=10, batch_size=500, verbose=1)
+    estimator = KerasClassifier(build_fn=model, epochs=10, batch_size=500, verbose=1)
     print ('Y passing into model: ', dummy_y)
     estimator.fit(X, dummy_y)
     dummy_y_pred_dev = estimator.predict(X_dev)

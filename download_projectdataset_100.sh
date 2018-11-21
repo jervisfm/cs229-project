@@ -2,6 +2,9 @@
 
 # This is a script to download Google Quick Draw dataset.
 
+#Set the field separator to new line
+IFS=$'\n'
+
 echo "Downloading quickdraw dataset from Google. This will take a moment ..."
 DEST_DIR="data/numpy_bitmap_100"
 mkdir -p $DEST_DIR

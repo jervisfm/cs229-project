@@ -2,6 +2,7 @@ import numpy as np
 import pandas
 import time
 import random
+import os
 
 import pickle
 from keras.models import Sequential

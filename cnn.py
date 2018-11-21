@@ -226,7 +226,9 @@ def main():
     pickle.dump(conf_matrix, open(get_confusion_matrix_filename(), 'wb'))
 
 def generate_confusion_matrix():
-    pass
+    class_names = pickle.load(open(get_class_filename(), 'rb'))[:10]
+    confusion = pickle.load(open(get_confusion_matrix_filename(), 'rb'))[:10,:10]
+    utils.create_confusion_matrices(class_names, confusion, get_confusion_matrix_name())
 
 if __name__ == '__main__':
     main()

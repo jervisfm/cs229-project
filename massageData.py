@@ -57,7 +57,7 @@ class massageData():
 
                 random_seed = 42
                 # Some classes have as much as 100-250K examples. This leads to OOMS when loading data via numpy. So limit number of examples per class.
-                max_num_examples_per_class = 70000
+                max_num_examples_per_class = 20000
                 for index, filename in enumerate(os.listdir(self.folder)):
                         fullpath = self.folder + filename
                         # use filename as Y label.

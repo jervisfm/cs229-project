@@ -6,7 +6,8 @@
 IFS=$'\n'
 
 echo "Downloading quickdraw dataset from Google. This will take a moment ..."
-mkdir -p data/numpy_bitmap
+DEST_DIR="data/numpy_bitmap_10"
+mkdir -p $DEST_DIR
 
 CATEGORIES="laptop
 rain
@@ -21,7 +22,7 @@ paint can"
 
 for category in $CATEGORIES
 do
-    gsutil -m cp gs://quickdraw_dataset/full/numpy_bitmap/$category.npy data/numpy_bitmap
+    gsutil -m cp gs://quickdraw_dataset/full/numpy_bitmap/$category.npy $DEST_DIR
 done
 
 echo "Downloading done."

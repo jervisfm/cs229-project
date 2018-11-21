@@ -31,14 +31,56 @@ flags = tf.app.flags
 FLAGS = flags.FLAGS
 
 flags.DEFINE_integer('max_iter', 100, 'Number of steps/epochs to run training.')
+flags.DEFINE_integer('batch_size', 500, 'Number of examples to use in a batch for stochastic gradient descent.')
 flags.DEFINE_string('data_folder', 'data/numpy_bitmap/', 'Directory which has training data to use. Must have / at end.')
 flags.DEFINE_string('results_folder', 'results/', 'Folder to store result outputs from run.')
 flags.DEFINE_string('experiment_name', None, 'Name for the experiment. Useful to tagging files')
 
 
-CLASS_NUM = 50
-
 model_filename = 'simple_cnn_keras_model'
+model_weights_filename = 'simple_cnn_keras_model_weights'
+class_file_name = 'class_names_simple_cnn'
+confusion_file_name = 'confusion_matrix_simple_cnn'
+
+def get_data_folder():
+    return FLGAS.data_folder
+
+def get_num_classes():
+    return len(os.listdir(get_data_folder()))
+
+def get_suffix_name():
+    return "_" + FLAGS.experiment_name if FLAGS.experiment_name else ""
+
+def get_class_filename():
+    suffix_name = get_suffix_name()
+    filename = "{}{}".format(class_file_name, suffix_name)
+    return os.path.join(FLAGS.results_folder, filename)
+
+def get_confusion_matrix_name():
+    return "{}{}".format(confusion_file_name, get_suffix_name())
+
+def get_confusion_matrix_filename():
+    suffix_name = get_suffix_name()
+    filename  = "{}{}".format(confusion_file_name, suffix_name)
+    return os.path.join(FLAGS.results_folder, filename)
+
+def get_model_filename():
+    suffix_name = get_suffix_name()
+    filename  = "{}{}".format(model_filename, suffix_name)
+    return os.path.join(FLAGS.results_folder, filename)
+
+def get_model_weights_filename():
+    suffix_name = get_suffix_name()
+    filename  = "{}{}".format(model_weights_filename, suffix_name)
+    return os.path.join(FLAGS.results_folder, filename)
+
+
+def get_experiment_report_filename():
+    suffix_name = get_suffix_name()
+    filename =  "{}{}".format("baselinev2_lr_results", suffix_name)
+    return os.path.join(FLAGS.results_folder, filename)
+
+
 def encode_values(encoder, Y, forConfusionMatrix=False):
     # Use train y to encode
     encoder.fit(Y)
@@ -75,7 +117,7 @@ def model():
     classifier.add(Flatten())
     # Step 4 - Full connection
     classifier.add(Dense(units=128, activation='relu'))
-    classifier.add(Dense(CLASS_NUM, activation='softmax'))
+    classifier.add(Dense(get_num_classes(), activation='softmax'))
     # Compiling the CNN
     classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return classifier
@@ -94,7 +136,7 @@ def convert_predictions_to_onehot(predictions, num_classes):
 
 
 def main():
-    print ("Done loading the libraries")
+    print("folder = ", FLAGS.data_folder)
     t0 = time.time()
     # fix random seed for reproducibility
     seed = 7
@@ -102,7 +144,7 @@ def main():
     random.seed(seed)
 
     # load dataset
-    data = massageData.massageData()
+    data = massageData.massageData(folder=FLAGS.data_folder)
     X, Y = data.getTrain()
     X_dev, Y_dev = data.getDev()
 
@@ -134,24 +176,34 @@ def main():
     tensorboard = TensorBoard()
 
     cnn_model = model()
-    cnn_model.fit(X, dummy_y, epochs=100, batch_size=500, verbose=1)
+    cnn_model.fit(X, dummy_y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1)
+
+    t1 = time.time()
+    training_duration_secs = t1 - t0
+    experiment_result_string = "-------------------\n"
+    experiment_result_string += "\nTraining time(secs): {}".format(training_duration_secs)
+    experiment_result_string += "\nMax training iterations: {}".format(FLAGS.max_iter)
+    experiment_result_string += "\nTraining time / Max training iterations: {}".format( 1.0 * training_duration_secs / FLAGS.max_iter)
+
     dummy_y_pred_dev = cnn_model.predict(X_dev)
 
     # Need to take argmax to find most likely class.
     dummy_y_pred_dev_class = dummy_y_pred_dev.argmax(axis=-1)
 
+
     # evaluate the model
     scores = cnn_model.evaluate(X_dev, dummy_y_dev,  verbose=0)
-    print("Cnn model metrics", cnn_model.metrics_names)
-    print("%s: %.2f%%" % (cnn_model.metrics_names[1], scores[1] * 100))
+    experiment_result_string += "Simple CNN model %s: %.2f%%" % (cnn_model.metrics_names[1], scores[1] * 100)
+
+    print(experiment_result_string)
 
     # serialize model to JSON
     # TODO: make this configurable.
     model_json = cnn_model.to_json()
-    with open("cnn_model_50.json", "w") as json_file:
+    with open(get_model_filename(), "w") as json_file:
         json_file.write(model_json)
     # serialize weights to HDF5
-    cnn_model.save_weights("cnn_model_weights_50.keras")
+    cnn_model.save_weights(get_model_weights_filename())
     print("Saved model to disk")
 
 
@@ -164,17 +216,18 @@ def main():
     # kfold = KFold(n_splits=2, shuffle=True, random_state=seed)
 
     # results = cross_val_score(estimator, X, dummy_y, cv=kfold, verbose=1, fit_params={'callbacks': [tensorboard]})
-    t1 = time.time()
-
-    print("Time elapsed: ", t1 - t0)
     # print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
 
 
     print("Dummy y pred dev class", dummy_y_pred_dev_class[0])
     conf_matrix = confusion_matrix(dummy_y_dev_confusion_matrix, dummy_y_pred_dev_class)
     print ("Confusion matrix", conf_matrix)
-    pickle.dump(class_names, open('cnn_50class', 'wb'))
-    pickle.dump(conf_matrix, open('cnn_confusion_matrix_50class', 'wb'))
-    
+    pickle.dump(class_names, open(get_class_filename(), 'wb'))
+    pickle.dump(conf_matrix, open(get_confusion_matrix_filename(), 'wb'))
+
+def generate_confusion_matrix():
+    pass
+
 if __name__ == '__main__':
     main()
+    generate_confusion_matrix()

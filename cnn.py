@@ -25,6 +25,17 @@ import massageData
 import utils
 from sklearn.metrics import confusion_matrix
 
+import tensorflow as tf
+
+flags = tf.app.flags
+FLAGS = flags.FLAGS
+
+flags.DEFINE_integer('max_iter', 100, 'Number of steps/epochs to run training.')
+flags.DEFINE_string('data_folder', 'data/numpy_bitmap/', 'Directory which has training data to use. Must have / at end.')
+flags.DEFINE_string('results_folder', 'results/', 'Folder to store result outputs from run.')
+flags.DEFINE_string('experiment_name', None, 'Name for the experiment. Useful to tagging files')
+
+
 CLASS_NUM = 50
 
 model_filename = 'simple_cnn_keras_model'

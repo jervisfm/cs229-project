@@ -28,5 +28,10 @@ python3 cnn.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_100/ --exper
 echo "Running experiment on 200 classes !"
 python3 cnn.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_200/ --experiment_name="200_classes" "$@"
 
+# Run experiment on 300 classes
+echo "Running experiment on 300 classes !"
+python3 cnn.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_300/ --experiment_name="300_classes" "$@"
+
+
 # All done
 echo "All done !"

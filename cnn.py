@@ -44,7 +44,7 @@ class_file_name = 'class_names_simple_cnn'
 confusion_file_name = 'confusion_matrix_simple_cnn'
 
 def get_data_folder():
-    return FLGAS.data_folder
+    return FLAGS.data_folder
 
 def get_num_classes():
     return len(os.listdir(get_data_folder()))

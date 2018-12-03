@@ -226,6 +226,7 @@ def main():
     experiment_result_string += "Simple CNN model %s: %.2f%%" % (cnn_model.metrics_names[1], scores[1] * 100)
 
     print(experiment_result_string)
+    utils.write_contents_to_file(get_experiment_report_filename(), experiment_result_string)
 
     # serialize model to JSON
     # TODO: make this configurable.

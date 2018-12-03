@@ -479,3 +479,12 @@ Done building estimator
        [   1,   12,    3, ...,    1, 6435,    3],
        [  17,   56,   15, ...,   64,    7, 5282]]))
 ```
+
+## Models Version
+
+### CNN Model v1
+* This is the first model and it used 2 convolutions.
+
+### CNN Model v2
+* This is second iteration of the model and we retduce number of convolution to 1 to see what the impact would be.
+

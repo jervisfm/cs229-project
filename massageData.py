@@ -5,6 +5,12 @@ import utils
 from sklearn.model_selection import train_test_split
 
 class massageData():
+        def binarize(self, x):
+                """ Set all pixel with value > 0 to be 255. 
+                This means we only differentiate between 'have ink' and
+                'does not have ink'"""
+                x[x>0] = 255
+                return x
 
         def getData(self):
                 """ Returns the full dataset. This is 100% of the loaded data. """
@@ -22,7 +28,7 @@ class massageData():
                 """ Returns a tuple of x,y for the developmetn dataset. """
                 return (self.X_dev, self.y_dev)
 
-        def __init__(self, folder='data/numpy_bitmap/'):
+        def __init__(self, folder='data/numpy_bitmap_3/', binarize=False):
                 """
                 Creates is new instsance of massageData.
 
@@ -66,6 +72,10 @@ class massageData():
                         x = np.load(fullpath)
                         x = x[:max_num_examples_per_class,:]
                         print("X has shape", x.shape)
+                        
+                        if binarize:
+                                x = self.binarize(x)
+
                         y = [name] * x.shape[0]
                         # Full dataset.
                         #self.X = np.concatenate((self.X, x), axis=0)
@@ -103,8 +113,6 @@ class massageData():
 
 def main():
         data = massageData()
-        print("x values: ", data.getX().shape)
-        print("y values: ", data.getY().shape)
 
 if __name__ == '__main__':
         main()

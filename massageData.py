@@ -28,7 +28,7 @@ class massageData():
                 """ Returns a tuple of x,y for the developmetn dataset. """
                 return (self.X_dev, self.y_dev)
 
-        def __init__(self, folder='data/numpy_bitmap_3/', binarize=False):
+        def __init__(self, folder='data/numpy_bitmap/', binarize=False):
                 """
                 Creates is new instsance of massageData.
 
@@ -74,6 +74,7 @@ class massageData():
                         print("X has shape", x.shape)
                         
                         if binarize:
+                                print('USING BINARIZED DATA')
                                 x = self.binarize(x)
 
                         y = [name] * x.shape[0]

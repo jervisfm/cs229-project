@@ -36,7 +36,7 @@ flags.DEFINE_integer('batch_size', 500, 'Number of examples to use in a batch fo
 flags.DEFINE_string('data_folder', 'data/numpy_bitmap/', 'Directory which has training data to use. Must have / at end.')
 flags.DEFINE_string('results_folder', 'results/', 'Folder to store result outputs from run.')
 flags.DEFINE_string('experiment_name', None, 'Name for the experiment. Useful to tagging files')
-
+flags.DEFINE_integer('model_version', 1, 'The version of the model that we want to run. Useful to run different models to compare them')
 
 model_filename = 'simple_cnn_keras_model'
 model_weights_filename = 'simple_cnn_keras_model_weights'
@@ -123,6 +123,29 @@ def model():
     classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return classifier
 
+def model_v2():
+    # model_v2() only has 1 conv layer compared to 2 conv layers in model()
+    # Based on code snippets from https://becominghuman.ai/building-an-image-classifier-using-deep-learning-in-python-totally-from-a-beginners-perspective-be8dbaf22dd8
+    print ('Using model version 2')
+
+    # Initialising the CNN
+    classifier = Sequential()
+    # Step 1 - Convolution
+    classifier.add(Conv2D(14, (3, 3), input_shape=(28, 28, 1), activation='relu'))
+    # Step 2 - Pooling
+    classifier.add(MaxPooling2D(pool_size=(2, 2)))
+    # # Adding a second convolutional layer
+    # classifier.add(Conv2D(14, (3, 3), activation='relu'))
+    # classifier.add(MaxPooling2D(pool_size=(2, 2)))
+    # Step 3 - Flattening
+    classifier.add(Flatten())
+    # Step 4 - Full connection
+    classifier.add(Dense(units=128, activation='relu'))
+    classifier.add(Dense(get_num_classes(), activation='softmax'))
+    # Compiling the CNN
+    classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+    return classifier    
+
 def get_onehot_vector(index, num_classes):
     result = np.zeros(num_classes)
     result[index] = 1
@@ -176,7 +199,13 @@ def main():
     # build the model
     tensorboard = TensorBoard()
 
-    cnn_model = model()
+    
+    # add flags to switch model
+    if FLAGS.model_version == 2:
+        cnn_model = model_v2()
+    else:
+        cnn_model = model()
+
     cnn_model.fit(X, dummy_y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1)
 
     t1 = time.time()

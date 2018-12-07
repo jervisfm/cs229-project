@@ -38,6 +38,9 @@ class massageData():
                 - folder: Path to the folder with the npy image array data. Important
                 Path should end with a '/' at the end.
                 If not set, defaults to 'data/numpy_bitmap/'
+
+                - convertTo3Channels: Converts the input data into 3 rgb channels. Useful to transfer
+                learning with imagenet models that expected images with rgb channels.
                 """
                 self.folder = folder
                 self.X = np.zeros((0, utils.BITMAP_DIM))
@@ -99,7 +102,6 @@ class massageData():
                         self.y_test += y_test
 
 
-
                 # Convert into NP Arrays.
                 self.Y = np.array(self.Y)
                 self.y_train = np.array(self.y_train)
@@ -110,6 +112,8 @@ class massageData():
                 print("train: ", self.X_train.shape)
                 print("Test: ", self.X_test.shape)
                 print("Dev: ", self.X_dev.shape)
+
+
 
 
 def main():

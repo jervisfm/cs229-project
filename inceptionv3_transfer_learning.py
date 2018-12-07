@@ -202,6 +202,17 @@ def convert_predictions_to_onehot(predictions, num_classes):
     return result
 
 
+def convertTo3Channels(x):
+        # x has shape (m. size, size, # channels)
+        num_examples, size_x, size_y, _ = x.shape
+        result = np.zeros((num_examples, size_x, size_y, 3))
+        num_channels = 3
+        for i in range(num_examples):
+                for j in range(num_channels):
+                        result[i, :, :, j] = x[i, :, :, 0]
+
+        return result
+
 def main():
     print("folder = ", FLAGS.data_folder)
     t0 = time.time()
@@ -211,6 +222,7 @@ def main():
     random.seed(seed)
 
     # load dataset
+    # TODO: make this configurable.
     data = massageData.massageData(folder=FLAGS.data_folder, binarize=FLAGS.using_binarization)
     X, Y = data.getTrain()
     X_dev, Y_dev = data.getDev()
@@ -225,10 +237,15 @@ def main():
     X_dev = X_dev.reshape((-1, 28, 28, 1))
     print("X dev shape after: ", X_dev.shape)
 
+    print("Converting to 3 channnels...")
+    print("Before: ", X_dev.shape)
+    X_dev = convertTo3Channels(X_dev)
+    print("After: ", X_dev.shape)
+    X = convertTo3Channels(X)
+
     print ("Done load dataset")
 
-    # do some more preprocessing
-    # encode class values as integers
+    # do some more preprocessing    # encode class values as integers
     encoder = LabelEncoder()
     # dummy_y will be one-hot encoding of classes
     dummy_y = encode_values(encoder, Y)

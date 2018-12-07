@@ -28,6 +28,13 @@ from sklearn.metrics import confusion_matrix
 
 import tensorflow as tf
 
+from keras.applications.inception_v3 import InceptionV3
+from keras.preprocessing import image
+from keras.models import Model
+from keras.layers import Dense, GlobalAveragePooling2D
+from keras import backend as K
+
+
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 
@@ -125,28 +132,6 @@ def model():
     classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return classifier
 
-def model_v2():
-    # model_v2() only has 1 conv layer compared to 2 conv layers in model()
-    # Based on code snippets from https://becominghuman.ai/building-an-image-classifier-using-deep-learning-in-python-totally-from-a-beginners-perspective-be8dbaf22dd8
-    print ('Using model version 2')
-
-    # Initialising the CNN
-    classifier = Sequential()
-    # Step 1 - Convolution
-    classifier.add(Conv2D(14, (3, 3), input_shape=(28, 28, 1), activation='relu'))
-    # Step 2 - Pooling
-    classifier.add(MaxPooling2D(pool_size=(2, 2)))
-    # # Adding a second convolutional layer
-    # classifier.add(Conv2D(14, (3, 3), activation='relu'))
-    # classifier.add(MaxPooling2D(pool_size=(2, 2)))
-    # Step 3 - Flattening
-    classifier.add(Flatten())
-    # Step 4 - Full connection
-    classifier.add(Dense(units=128, activation='relu'))
-    classifier.add(Dense(get_num_classes(), activation='softmax'))
-    # Compiling the CNN
-    classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-    return classifier    
 
 def get_onehot_vector(index, num_classes):
     result = np.zeros(num_classes)
@@ -201,14 +186,7 @@ def main():
     # build the model
     tensorboard = TensorBoard()
 
-    
-    # add flags to switch model
-    if FLAGS.model_version == 2:
-        cnn_model = model_v2()
-    else:
-        cnn_model = model()
-
-    cnn_model.fit(X, dummy_y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1)
+    # Transfer TODO Learning
 
     t1 = time.time()
     training_duration_secs = t1 - t0
@@ -228,35 +206,7 @@ def main():
     experiment_result_string += "Simple CNN model %s: %.2f%%" % (cnn_model.metrics_names[1], scores[1] * 100)
 
     print(experiment_result_string)
-    utils.write_contents_to_file(get_experiment_report_filename(), experiment_result_string)
 
-    # serialize model to JSON
-    # TODO: make this configurable.
-    model_json = cnn_model.to_json()
-    with open(get_model_filename(), "w") as json_file:
-        json_file.write(model_json)
-    # serialize weights to HDF5
-    cnn_model.save_weights(get_model_weights_filename())
-    print("Saved model to disk")
-
-
-
-    # print("predictions ", estimator.predict(X_dev))
-    # print("actual output ", Y_dev)
-
-    print ("Done building estimator")
-
-    # kfold = KFold(n_splits=2, shuffle=True, random_state=seed)
-
-    # results = cross_val_score(estimator, X, dummy_y, cv=kfold, verbose=1, fit_params={'callbacks': [tensorboard]})
-    # print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
-
-
-    print("Dummy y pred dev class", dummy_y_pred_dev_class[0])
-    conf_matrix = confusion_matrix(dummy_y_dev_confusion_matrix, dummy_y_pred_dev_class)
-    print ("Confusion matrix", conf_matrix)
-    pickle.dump(class_names, open(get_class_filename(), 'wb'))
-    pickle.dump(conf_matrix, open(get_confusion_matrix_filename(), 'wb'))
 
 def generate_confusion_matrix():
     class_names = pickle.load(open(get_class_filename(), 'rb'))[:10]

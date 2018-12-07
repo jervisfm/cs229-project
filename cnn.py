@@ -37,6 +37,8 @@ flags.DEFINE_string('data_folder', 'data/numpy_bitmap/', 'Directory which has tr
 flags.DEFINE_string('results_folder', 'results/', 'Folder to store result outputs from run.')
 flags.DEFINE_string('experiment_name', None, 'Name for the experiment. Useful to tagging files')
 flags.DEFINE_integer('model_version', 1, 'The version of the model that we want to run. Useful to run different models to compare them')
+flags.DEFINE_boolean('using_binarization', False, 'If True, binarize the data before passing into cnn')
+
 
 model_filename = 'simple_cnn_keras_model'
 model_weights_filename = 'simple_cnn_keras_model_weights'
@@ -168,7 +170,7 @@ def main():
     random.seed(seed)
 
     # load dataset
-    data = massageData.massageData(folder=FLAGS.data_folder)
+    data = massageData.massageData(folder=FLAGS.data_folder, binarize=FLAGS.using_binarization)
     X, Y = data.getTrain()
     X_dev, Y_dev = data.getDev()
 

@@ -135,7 +135,7 @@ def model():
 
 def transfer_learning(X, y):
     # Based on code snippets from:https://keras.io/applications/
-
+    print("Running transfer learning ...")
     # create the base pre-trained model
     base_model = InceptionV3(weights='imagenet', include_top=False)
 
@@ -159,6 +159,7 @@ def transfer_learning(X, y):
     model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
 
     # train the model on the new data for a few epochs
+    print("Tuning our last custom layer...")
     model.fit(X, y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1)
 
     # at this point, the top layers are well trained and we can start fine-tuning
@@ -184,7 +185,9 @@ def transfer_learning(X, y):
 
     # we train our model again (this time fine-tuning the top 2 inception blocks
     # alongside the top Dense layers
+    print("Tuning the last 2 inceptions layers ...")
     model.fit(X, y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1)
+    return  model
 
 def get_onehot_vector(index, num_classes):
     result = np.zeros(num_classes)
@@ -240,6 +243,7 @@ def main():
     tensorboard = TensorBoard()
 
     # Transfer TODO Learning
+    model = transfer_learning(X, dummy_y)
 
     t1 = time.time()
     training_duration_secs = t1 - t0
@@ -248,15 +252,15 @@ def main():
     experiment_result_string += "\nMax training iterations: {}".format(FLAGS.max_iter)
     experiment_result_string += "\nTraining time / Max training iterations: {}".format( 1.0 * training_duration_secs / FLAGS.max_iter)
 
-    dummy_y_pred_dev = cnn_model.predict(X_dev)
+    dummy_y_pred_dev = model.predict(X_dev)
 
     # Need to take argmax to find most likely class.
     dummy_y_pred_dev_class = dummy_y_pred_dev.argmax(axis=-1)
 
 
     # evaluate the model
-    scores = cnn_model.evaluate(X_dev, dummy_y_dev,  verbose=0)
-    experiment_result_string += "Simple CNN model %s: %.2f%%" % (cnn_model.metrics_names[1], scores[1] * 100)
+    scores = model.evaluate(X_dev, dummy_y_dev,  verbose=0)
+    experiment_result_string += "Simple CNN model %s: %.2f%%" % (model.metrics_names[1], scores[1] * 100)
 
     print(experiment_result_string)
 

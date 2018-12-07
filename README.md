@@ -481,7 +481,7 @@ Done building estimator
 ```
 
 ### 300 class test run
-This run did not complete fully and was terminated due to taking too long to run.
+The simple model run did not complete fully and was terminated due to taking too long to run.
 
 #### Modelv1
 This was started at around 2018-12-05 22:13:47.545576. Been running for 12+ hours
@@ -521,6 +521,13 @@ Epoch 96/100
 4800000/4800000 [==============================] - 3392s 707us/step - loss: 1.6656 - acc: 0.6069
 Epoch 97/100
 4370000/4800000 [==========================>...] - ETA: 31:01 - loss: 1.6650 - acc: 0.6068
+...
+Training time(secs): 95846.50487065315
+Max training iterations: 100
+Training time / Max training iterations: 958.4650487065315Simple CNN model acc: 60.77%
+Saved model to disk
+Done building estimator
+Dummy y pred dev class 151
 ```
 #### Modelv2
 This had been running for ~30 hours

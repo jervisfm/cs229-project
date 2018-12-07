@@ -28,7 +28,12 @@ from sklearn.metrics import confusion_matrix
 
 import tensorflow as tf
 
+#TODO: consider scaling image to 299x299.
+
 from keras.applications.inception_v3 import InceptionV3
+from keras.applications.mobilenet import MobileNet
+from keras.applications.resnet50 import ResNet50
+
 from keras.preprocessing import image
 from keras.models import Model
 from keras.layers import Dense, GlobalAveragePooling2D
@@ -133,11 +138,11 @@ def model():
     return classifier
 
 
-def transfer_learning(X, y):
+def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include_top=False)):
     # Based on code snippets from:https://keras.io/applications/
     print("Running transfer learning ...")
     # create the base pre-trained model
-    base_model = InceptionV3(weights='imagenet', include_top=False)
+    base_model = source_model
 
     # add a global spatial average pooling layer
     x = base_model.output
@@ -216,6 +221,12 @@ def convertTo3Channels(x):
 
         return result
 
+
+def assertXIsNotNan(X):
+    if np.isnan(X).any():
+        raise ValueError("Oh no input is nan!!!")
+
+
 def main():
     print("folder = ", FLAGS.data_folder)
     t0 = time.time()
@@ -245,6 +256,8 @@ def main():
     X_dev = convertTo3Channels(X_dev)
     print("After: ", X_dev.shape)
     X = convertTo3Channels(X)
+
+    assertXIsNotNan(X)
 
     print ("Done load dataset")
 

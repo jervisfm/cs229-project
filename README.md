@@ -604,3 +604,19 @@ Max training iterations: 2
 Training time / Max training iterations: 11322.9541765Simple CNN model (tranfer learning) acc: 46.47%
 
 ```
+
+###Repeat of run but with GPUs
+We see a 25x speed up!
+```
+(310, 'mixed10')
+Tuning the last 2 inceptions layers ...
+Epoch 1/2
+48000/48000 [==============================] - 145s 3ms/step - loss: 0.2210 - acc: 0.9168
+Epoch 2/2
+48000/48000 [==============================] - 133s 3ms/step - loss: 0.2062 - acc: 0.9226
+('Model metric names: ', ['loss', 'acc'])
+-------------------
+
+Training time(secs): 887.143157005
+Max training iterations: 2
+```

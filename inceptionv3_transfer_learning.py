@@ -189,8 +189,6 @@ def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include
     # we need to recompile the model for these modifications to take effect
     # we use SGD with a low learning rate
     from keras.optimizers import SGD
-
-
     model.compile(optimizer=SGD(lr=0.0001, momentum=0.9, clipnorm=1), loss='categorical_crossentropy', metrics=['accuracy'])
 
     # we train our model again (this time fine-tuning the top 2 inception blocks
@@ -257,10 +255,15 @@ def main():
     print("X dev shape after: ", X_dev.shape)
 
     print("Converting to 3 channnels...")
-    print("Before: ", X_dev.shape)
-    X_dev = convertTo3Channels(X_dev)
-    print("After: ", X_dev.shape)
-    X = convertTo3Channels(X)
+
+    # Image size expected for transfer learned model.
+    # Inceptionv3 -- 299x299
+    # Resnet -- 224 x 224
+
+    #new_image_size = (299, 299)
+    new_image_size = (224, 224)
+    X_dev = convertTo3Channels(X_dev, new_image_size)
+    X = convertTo3Channels(X, new_image_size)
 
     assertXIsNotNan(X)
 
@@ -282,8 +285,9 @@ def main():
 
     # TODO: make this configurabel via flag.
     #source_model = MobileNet(weights='imagenet', include_top=False)
-    #source_model = InceptionV3(weights='imagenet', include_top=False)
-    source_model = ResNet50(weights='imagenet', include_top=False)
+
+    source_model = InceptionV3(weights='imagenet', include_top=False)
+    #source_model = ResNet50(weights='imagenet', include_top=False)
     model = transfer_learning(X, dummy_y, source_model)
 
     t1 = time.time()

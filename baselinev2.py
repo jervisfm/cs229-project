@@ -94,9 +94,6 @@ def main():
     confusion = pickle.load(open(get_confusion_matrix_filename(), 'rb'))[:10,:10]
     utils.create_confusion_matrices(class_names, confusion, get_confusion_matrix_name())
 
-
-
-
 if __name__ == '__main__':
     run()
     #main()

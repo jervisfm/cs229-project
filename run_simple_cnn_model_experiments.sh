@@ -21,16 +21,16 @@ echo "Running experiment on 50 classes !"
 python3 cnn.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_50/ --experiment_name="50_classes" "$@"
 
 # Run experiment on 100 classes
-echo "Running experiment on 100 classes !"
-python3 cnn.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_100/ --experiment_name="100_classes" "$@"
+#echo "Running experiment on 100 classes !"
+#python3 cnn.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_100/ --experiment_name="100_classes" "$@"
 
 # Run experiment on 200 classes
-echo "Running experiment on 200 classes !"
-python3 cnn.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_200/ --experiment_name="200_classes" "$@"
+#echo "Running experiment on 200 classes !"
+#python3 cnn.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_200/ --experiment_name="200_classes" "$@"
 
 # Run experiment on 300 classes
-echo "Running experiment on 300 classes !"
-python3 cnn.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_300/ --experiment_name="300_classes" "$@"
+#echo "Running experiment on 300 classes !"
+#python3 cnn.py --max_iter=$MAX_ITER --data_folder=data/numpy_bitmap_300/ --experiment_name="300_classes" "$@"
 
 
 # All done

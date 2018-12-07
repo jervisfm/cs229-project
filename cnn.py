@@ -80,7 +80,7 @@ def get_model_weights_filename():
 
 def get_experiment_report_filename():
     suffix_name = get_suffix_name()
-    filename =  "{}{}".format("baselinev2_lr_results", suffix_name)
+    filename =  "{}{}".format("simple_cnn_keras_results", suffix_name)
     return os.path.join(FLAGS.results_folder, filename)
 
 

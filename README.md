@@ -561,3 +561,46 @@ Epoch 79/100
 ### CNN Model v2
 * This is second iteration of the model and we retduce number of convolution to 1 to see what the impact would be.
 
+
+## Transfer learning test run
+Test with 2 epochs over night.
+```
+Tuning our last custom layer...
+Epoch 1/2
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2041 thread 5 bound to OS proc set 5
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2252 thread 10 bound to OS proc set 0
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2253 thread 11 bound to OS proc set 1
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2255 thread 13 bound to OS proc set 3
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2256 thread 14 bound to OS proc set 4
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2251 thread 9 bound to OS proc set 9
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2249 thread 7 bound to OS proc set 7
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2254 thread 12 bound to OS proc set 2
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2248 thread 6 bound to OS proc set 6
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2250 thread 8 bound to OS proc set 8
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2040 thread 15 bound to OS proc set 5
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2257 thread 16 bound to OS proc set 6
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2259 thread 18 bound to OS proc set 8
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2258 thread 17 bound to OS proc set 7
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2260 thread 19 bound to OS proc set 9
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2261 thread 20 bound to OS proc set 0
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2262 thread 21 bound to OS proc set 1
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2263 thread 22 bound to OS proc set 2
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2264 thread 23 bound to OS proc set 3
+OMP: Info #250: KMP_AFFINITY: pid 2023 tid 2265 thread 24 bound to OS proc set 4
+48000/48000 [==============================] - 6553s 137ms/step - loss: 0.3723 - acc: 0.8586
+Epoch 2/2
+48000/48000 [==============================] - 8123s 169ms/step - loss: 0.2246 - acc: 0.9137
+
+Tuning the last 2 inceptions layers ...
+Epoch 1/2
+48000/48000 [==============================] - 4809s 100ms/step - loss: 0.1893 - acc: 0.9301
+Epoch 2/2
+48000/48000 [==============================] - 2187s 46ms/step - loss: 0.1820 - acc: 0.9325
+('Model metric names: ', ['loss', 'acc'])
+-------------------
+
+Training time(secs): 22645.9083531
+Max training iterations: 2
+Training time / Max training iterations: 11322.9541765Simple CNN model (tranfer learning) acc: 46.47%
+
+```

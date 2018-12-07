@@ -94,7 +94,7 @@ def get_model_weights_filename():
 
 def get_experiment_report_filename():
     suffix_name = get_suffix_name()
-    filename =  "{}{}".format("simple_cnn_keras_results", suffix_name)
+    filename =  "{}{}".format("transfer_learning_keras_results", suffix_name)
     return os.path.join(FLAGS.results_folder, filename)
 
 
@@ -150,7 +150,9 @@ def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include
     x = base_model.output
     x = GlobalAveragePooling2D()(x)
     # let's add a fully-connected layer
-    x = Dense(1024, activation='relu')(x)
+    # Let's reduce to 128 as that's what gave us good perf in the simple model.
+    x = Dense(128, activation='relu')(x)
+    #x = Dense(1024, activation='relu')(x)
     # and a logistic layer -- let's say we have 200 classes
     predictions = Dense(get_num_classes(), activation='softmax')(x)
 
@@ -306,7 +308,7 @@ def main():
     # evaluate the model
     scores = model.evaluate(X_dev, dummy_y_dev,  verbose=0)
     print("Model metric names: ", model.metrics_names)
-    experiment_result_string += "Simple CNN model %s: %.2f%%" % (model.metrics_names[1], scores[1] * 100)
+    experiment_result_string += "Tranfer learning model result  %s: %.2f%%" % (model.metrics_names[1], scores[1] * 100)
 
     print(experiment_result_string)
 

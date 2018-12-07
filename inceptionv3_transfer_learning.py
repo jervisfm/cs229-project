@@ -156,7 +156,8 @@ def transfer_learning(X, y):
         layer.trainable = False
 
     # compile the model (should be done *after* setting layers to non-trainable)
-    model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
+    from keras.optimizers import Adam
+    model.compile(optimizer=Adam(clipnorm=1), loss='categorical_crossentropy', metrics=['accuracy'])
 
     # train the model on the new data for a few epochs
     print("Tuning our last custom layer...")
@@ -181,7 +182,9 @@ def transfer_learning(X, y):
     # we need to recompile the model for these modifications to take effect
     # we use SGD with a low learning rate
     from keras.optimizers import SGD
-    model.compile(optimizer=SGD(lr=0.0001, momentum=0.9), loss='categorical_crossentropy', metrics=['accuracy'])
+
+
+    model.compile(optimizer=SGD(lr=0.0001, momentum=0.9, clipnorm=1), loss='categorical_crossentropy', metrics=['accuracy'])
 
     # we train our model again (this time fine-tuning the top 2 inception blocks
     # alongside the top Dense layers

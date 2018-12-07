@@ -4,6 +4,8 @@ import time
 import random
 import os
 
+import scipy
+
 import pickle
 from keras.models import Sequential
 from keras.layers import Dense
@@ -210,14 +212,17 @@ def convert_predictions_to_onehot(predictions, num_classes):
     return result
 
 
-def convertTo3Channels(x):
+def convertTo3Channels(x, new_image_size=(299, 299)):
         # x has shape (m. size, size, # channels)
         num_examples, size_x, size_y, _ = x.shape
-        result = np.zeros((num_examples, size_x, size_y, 3))
+        result = np.zeros((num_examples, new_image_size[0], new_image_size[1], 3))
         num_channels = 3
+        # TODO: Try red color drawings...
         for i in range(num_examples):
-                for j in range(num_channels):
-                        result[i, :, :, j] = x[i, :, :, 0]
+            source_image = x[i, :, :, 0]
+            scaled_image = scipy.misc.imresize(source_image, new_image_size)
+            for j in range(num_channels):
+                result[i, :, :, j] = scaled_image
 
         return result
 
@@ -275,8 +280,11 @@ def main():
     # build the model
     tensorboard = TensorBoard()
 
-    # Transfer TODO Learning
-    model = transfer_learning(X, dummy_y)
+    # TODO: make this configurabel via flag.
+    #source_model = MobileNet(weights='imagenet', include_top=False)
+    #source_model = InceptionV3(weights='imagenet', include_top=False)
+    source_model = ResNet50(weights='imagenet', include_top=False)
+    model = transfer_learning(X, dummy_y, source_model)
 
     t1 = time.time()
     training_duration_secs = t1 - t0

@@ -54,10 +54,10 @@ flags.DEFINE_integer('model_version', 1, 'The version of the model that we want 
 flags.DEFINE_boolean('using_binarization', False, 'If True, binarize the data before passing into cnn')
 
 
-model_filename = 'simple_cnn_keras_model'
-model_weights_filename = 'simple_cnn_keras_model_weights'
-class_file_name = 'class_names_simple_cnn'
-confusion_file_name = 'confusion_matrix_simple_cnn'
+model_filename = 'transfer_learning_model'
+model_weights_filename = 'transfer_learning_model_weights'
+class_file_name = 'class_names_transfer_learning'
+confusion_file_name = 'confusion_matrix_transfer_learning'
 
 def get_data_folder():
     return FLAGS.data_folder

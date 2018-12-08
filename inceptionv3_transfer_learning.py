@@ -140,7 +140,7 @@ def model():
     return classifier
 
 
-def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include_top=False)):
+def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include_top=False), tune_source_model=True):
     # Based on code snippets from:https://keras.io/applications/
     print("Running transfer learning ...")
     # create the base pre-trained model
@@ -181,6 +181,8 @@ def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include
     for i, layer in enumerate(base_model.layers):
         print(i, layer.name)
 
+    if not tune_source_model:
+        return model
     # we chose to train the top 2 inception blocks, i.e. we will freeze
     # the first 249 layers and unfreeze the rest:
     for layer in model.layers[:249]:
@@ -285,10 +287,12 @@ def main():
     tensorboard = TensorBoard()
 
     # TODO: make this configurabel via flag.
-    source_model = MobileNet(weights='imagenet', include_top=False)
+    #source_model = MobileNet(weights='imagenet', include_top=False)
     #source_model = InceptionV3(weights='imagenet', include_top=False)
-    #source_model = ResNet50(weights='imagenet', include_top=False)
-    model = transfer_learning(X, dummy_y, source_model)
+    source_model = ResNet50(weights='imagenet', include_top=False)
+    #model = transfer_learning(X, dummy_y, source_model, True)
+    model = transfer_learning(X, dummy_y, source_model, False)
+
 
     t1 = time.time()
     training_duration_secs = t1 - t0

@@ -257,18 +257,7 @@ def main():
     print("X dev shape after: ", X_dev.shape)
 
     print("Converting to 3 channnels...")
-
-    # Image size expected for transfer learned model.
-    # Inceptionv3 -- 299x299
-    # Resnet -- 224 x 224
-
-    #new_image_size = (299, 299)
-    new_image_size = (224, 224)
-    X_dev = convertTo3Channels(X_dev, new_image_size)
-    X = convertTo3Channels(X, new_image_size)
-
-    assertXIsNotNan(X)
-
+    
     print ("Done load dataset")
 
     # do some more preprocessing    # encode class values as integers
@@ -280,15 +269,24 @@ def main():
 
     print ('Dummy_y (should be one vector if class numbers):', dummy_y)
 
+    print("Converting input images for transfer learning...")
+    # Image size expected for transfer learned model.
+    # Inceptionv3 -- 299x299
+    # Resnet -- 224 x 224
+
+    #new_image_size = (299, 299)
+    new_image_size = (224, 224)
+    X_dev = convertTo3Channels(X_dev, new_image_size)
+    X = convertTo3Channels(X, new_image_size)
+    
     print ("Done preprocessing dataset")
 
     # build the model
     tensorboard = TensorBoard()
 
     # TODO: make this configurabel via flag.
-    #source_model = MobileNet(weights='imagenet', include_top=False)
-
-    source_model = InceptionV3(weights='imagenet', include_top=False)
+    source_model = MobileNet(weights='imagenet', include_top=False)
+    #source_model = InceptionV3(weights='imagenet', include_top=False)
     #source_model = ResNet50(weights='imagenet', include_top=False)
     model = transfer_learning(X, dummy_y, source_model)
 

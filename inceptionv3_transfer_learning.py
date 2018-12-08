@@ -47,17 +47,22 @@ FLAGS = flags.FLAGS
 
 flags.DEFINE_integer('max_iter', 100, 'Number of steps/epochs to run training.')
 flags.DEFINE_integer('batch_size', 500, 'Number of examples to use in a batch for stochastic gradient descent.')
-flags.DEFINE_string('data_folder', 'data/numpy_bitmap/', 'Directory which has training data to use. Must have / at end.')
+flags.DEFINE_string('data_folder', 'data/numpy_bitmap_3/', 'Directory which has training data to use. Must have / at end.')
 flags.DEFINE_string('results_folder', 'results/', 'Folder to store result outputs from run.')
 flags.DEFINE_string('experiment_name', None, 'Name for the experiment. Useful to tagging files')
 flags.DEFINE_integer('model_version', 1, 'The version of the model that we want to run. Useful to run different models to compare them')
 flags.DEFINE_boolean('using_binarization', False, 'If True, binarize the data before passing into cnn')
+flags.DEFINE_string('transfer_model', 'InceptionV3', 'Model use for transfer learning')
+flags.DEFINE_boolean('tune_source_model', False, 'If True, tune the weights of the original model as well')
 
 
 model_filename = 'transfer_learning_model'
 model_weights_filename = 'transfer_learning_model_weights'
 class_file_name = 'class_names_transfer_learning'
 confusion_file_name = 'confusion_matrix_transfer_learning'
+
+available_models = ['MobileNet', 'InceptionV3', 'ResNet50']
+
 
 def get_data_folder():
     return FLAGS.data_folder
@@ -213,8 +218,8 @@ def convert_predictions_to_onehot(predictions, num_classes):
         result[i] = get_onehot_vector(predictions[i], num_classes)
     return result
 
-
 def convertTo3Channels(x, new_image_size=(299, 299)):
+        print ('Convert data to shape: {}'.format(new_image_size))
         # x has shape (m. size, size, # channels)
         num_examples, size_x, size_y, _ = x.shape
         result = np.zeros((num_examples, new_image_size[0], new_image_size[1], 3))
@@ -225,9 +230,9 @@ def convertTo3Channels(x, new_image_size=(299, 299)):
             scaled_image = scipy.misc.imresize(source_image, new_image_size)
             for j in range(num_channels):
                 result[i, :, :, j] = scaled_image
-
         return result
 
+# for inline mutate x instead of 
 
 def assertXIsNotNan(X):
     if np.isnan(X).any():
@@ -235,6 +240,12 @@ def assertXIsNotNan(X):
 
 
 def main():
+    # Check if correct model flag is used. Warn the user early if not.
+    if FLAGS.transfer_model not in available_models:
+        print ("Please rerun with one of the models: 'MobileNet', 'InceptionV3', 'ResNet50'")
+        return
+
+
     print("folder = ", FLAGS.data_folder)
     t0 = time.time()
     # fix random seed for reproducibility
@@ -271,28 +282,47 @@ def main():
 
     print ('Dummy_y (should be one vector if class numbers):', dummy_y)
 
-    print("Converting input images for transfer learning...")
+    
+
+    # TODO: make them match up with flag
+
     # Image size expected for transfer learned model.
+    # MobileNet -- one of (128,128), (160,160), (192,192), or (224, 224)
     # Inceptionv3 -- 299x299
     # Resnet -- 224 x 224
 
     #new_image_size = (299, 299)
-    new_image_size = (224, 224)
-    X_dev = convertTo3Channels(X_dev, new_image_size)
-    X = convertTo3Channels(X, new_image_size)
+    # new_image_size = (224, 224)
+    # X_dev = convertTo3Channels(X_dev, new_image_size)
+    # X = convertTo3Channels(X, new_image_size)
     
-    print ("Done preprocessing dataset")
+    
 
     # build the model
     tensorboard = TensorBoard()
 
+    if FLAGS.transfer_model == 'MobileNet':
+        new_image_size = (224, 224)
+        source_model = MobileNet(input_shape=(224, 224, 3), weights='imagenet', include_top=False)
+    elif FLAGS.transfer_model == 'InceptionV3':
+        new_image_size = (299, 299)
+        source_model = InceptionV3(weights='imagenet', include_top=False)
+    elif FLAGS.transfer_model == 'ResNet50':
+        new_image_size = (224, 224)
+        source_model = ResNet50(weights='imagenet', include_top=False)
+
     # TODO: make this configurabel via flag.
     #source_model = MobileNet(weights='imagenet', include_top=False)
     #source_model = InceptionV3(weights='imagenet', include_top=False)
-    source_model = ResNet50(weights='imagenet', include_top=False)
+    #source_model = ResNet50(weights='imagenet', include_top=False)
     #model = transfer_learning(X, dummy_y, source_model, True)
-    model = transfer_learning(X, dummy_y, source_model, False)
 
+    print("Converting input images for transfer learning...")
+    X_dev = convertTo3Channels(X_dev, new_image_size)
+    X = convertTo3Channels(X, new_image_size)
+    print ("Done preprocessing dataset")
+
+    model = transfer_learning(X, dummy_y, source_model, FLAGS.tune_source_model)
 
     t1 = time.time()
     training_duration_secs = t1 - t0
@@ -313,6 +343,8 @@ def main():
     experiment_result_string += "Tranfer learning model result  %s: %.2f%%" % (model.metrics_names[1], scores[1] * 100)
 
     print(experiment_result_string)
+
+    #TODO: copy the code from CNN to save results, make sure the file name is different
 
 
 def generate_confusion_matrix():

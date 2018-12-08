@@ -144,25 +144,6 @@ def model():
     classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return classifier
 
-
-# def pick_model(model_name):
-#     '''Return the new_image_size, model'''
-
-#     if model_name == 'MobileNet':
-#         new_image_size = (224, 224)
-#         source_model = MobileNet(input_shape=(224, 224, 3), weights='imagenet', include_top=False)
-#     elif model_name == 'InceptionV3':
-#         new_image_size = (299, 299)
-#         source_model = InceptionV3(weights='imagenet', include_top=False)
-#     elif model_name == 'ResNet50':
-#         new_image_size = (224, 224)
-#         source_model = ResNet50(weights='imagenet', include_top=False)
-#     elif model_name == 'VGG19':
-#         new_image_size = (224, 224)
-#         source_model = V
-
-
-
 def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include_top=False), tune_source_model=True):
     # Based on code snippets from:https://keras.io/applications/
     print("Building transfer learning model...")

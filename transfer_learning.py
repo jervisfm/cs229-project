@@ -327,6 +327,7 @@ def main():
     t1 = time.time()
     training_duration_secs = t1 - t0
     experiment_result_string = "-------------------\n"
+    experiment_result_string += "Using model: {}\n".format(FLAGS.transfer_model)
     experiment_result_string += "\nTraining time(secs): {}".format(training_duration_secs)
     experiment_result_string += "\nMax training iterations: {}".format(FLAGS.max_iter)
     experiment_result_string += "\nTraining time / Max training iterations: {}".format( 1.0 * training_duration_secs / FLAGS.max_iter)
@@ -342,9 +343,10 @@ def main():
     print("Model metric names: ", model.metrics_names)
     experiment_result_string += "Tranfer learning model result  %s: %.2f%%" % (model.metrics_names[1], scores[1] * 100)
 
-    print(experiment_result_string)
-
     #TODO: copy the code from CNN to save results, make sure the file name is different
+    print(experiment_result_string)
+    utils.write_contents_to_file(get_experiment_report_filename(), experiment_result_string)
+
 
 
 def generate_confusion_matrix():

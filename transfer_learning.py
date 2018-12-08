@@ -35,6 +35,7 @@ import tensorflow as tf
 from keras.applications.inception_v3 import InceptionV3
 from keras.applications.mobilenet import MobileNet
 from keras.applications.resnet50 import ResNet50
+from keras.applications.vgg19 import VGG19
 
 from keras.preprocessing import image
 from keras.models import Model
@@ -61,8 +62,7 @@ model_weights_filename = 'transfer_learning_model_weights'
 class_file_name = 'class_names_transfer_learning'
 confusion_file_name = 'confusion_matrix_transfer_learning'
 
-available_models = ['MobileNet', 'InceptionV3', 'ResNet50']
-
+available_models = ['MobileNet', 'InceptionV3', 'ResNet50', 'VGG19']
 
 def get_data_folder():
     return FLAGS.data_folder
@@ -145,9 +145,27 @@ def model():
     return classifier
 
 
+# def pick_model(model_name):
+#     '''Return the new_image_size, model'''
+
+#     if model_name == 'MobileNet':
+#         new_image_size = (224, 224)
+#         source_model = MobileNet(input_shape=(224, 224, 3), weights='imagenet', include_top=False)
+#     elif model_name == 'InceptionV3':
+#         new_image_size = (299, 299)
+#         source_model = InceptionV3(weights='imagenet', include_top=False)
+#     elif model_name == 'ResNet50':
+#         new_image_size = (224, 224)
+#         source_model = ResNet50(weights='imagenet', include_top=False)
+#     elif model_name == 'VGG19':
+#         new_image_size = (224, 224)
+#         source_model = V
+
+
+
 def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include_top=False), tune_source_model=True):
     # Based on code snippets from:https://keras.io/applications/
-    print("Running transfer learning ...")
+    print("Building transfer learning model...")
     # create the base pre-trained model
     base_model = source_model
 
@@ -239,6 +257,26 @@ def assertXIsNotNan(X):
         raise ValueError("Oh no input is nan!!!")
 
 
+def get_source_model(source_model_name):
+    print ('Using base model: {}'.format(source_model_name))
+
+    if source_model_name == 'MobileNet':
+        new_image_size = (224, 224)
+        source_model = MobileNet(input_shape=(224, 224, 3), weights='imagenet', include_top=False)
+    elif source_model_name == 'InceptionV3':
+        new_image_size = (299, 299)
+        source_model = InceptionV3(weights='imagenet', include_top=False)
+    elif source_model_name == 'ResNet50':
+        new_image_size = (224, 224)
+        source_model = ResNet50(weights='imagenet', include_top=False)
+    elif source_model_name == 'VGG19':
+        new_image_size = (224, 224)
+        source_model = VGG19(weights='imagenet', include_top=False)
+    else:
+        raise AssertionError("Please use one of the available models only. They are 'MobileNet', 'InceptionV3', 'ResNet50', 'VGG19'")
+
+    return new_image_size, source_model
+
 def main():
     # Check if correct model flag is used. Warn the user early if not.
     if FLAGS.transfer_model not in available_models:
@@ -282,40 +320,10 @@ def main():
 
     print ('Dummy_y (should be one vector if class numbers):', dummy_y)
 
-    
-
-    # TODO: make them match up with flag
-
-    # Image size expected for transfer learned model.
-    # MobileNet -- one of (128,128), (160,160), (192,192), or (224, 224)
-    # Inceptionv3 -- 299x299
-    # Resnet -- 224 x 224
-
-    #new_image_size = (299, 299)
-    # new_image_size = (224, 224)
-    # X_dev = convertTo3Channels(X_dev, new_image_size)
-    # X = convertTo3Channels(X, new_image_size)
-    
-    
-
     # build the model
     tensorboard = TensorBoard()
 
-    if FLAGS.transfer_model == 'MobileNet':
-        new_image_size = (224, 224)
-        source_model = MobileNet(input_shape=(224, 224, 3), weights='imagenet', include_top=False)
-    elif FLAGS.transfer_model == 'InceptionV3':
-        new_image_size = (299, 299)
-        source_model = InceptionV3(weights='imagenet', include_top=False)
-    elif FLAGS.transfer_model == 'ResNet50':
-        new_image_size = (224, 224)
-        source_model = ResNet50(weights='imagenet', include_top=False)
-
-    # TODO: make this configurabel via flag.
-    #source_model = MobileNet(weights='imagenet', include_top=False)
-    #source_model = InceptionV3(weights='imagenet', include_top=False)
-    #source_model = ResNet50(weights='imagenet', include_top=False)
-    #model = transfer_learning(X, dummy_y, source_model, True)
+    new_image_size, source_model = get_source_model(FLAGS.transfer_model)
 
     print("Converting input images for transfer learning...")
     X_dev = convertTo3Channels(X_dev, new_image_size)
@@ -343,11 +351,8 @@ def main():
     print("Model metric names: ", model.metrics_names)
     experiment_result_string += "Tranfer learning model result  %s: %.2f%%" % (model.metrics_names[1], scores[1] * 100)
 
-    #TODO: copy the code from CNN to save results, make sure the file name is different
     print(experiment_result_string)
     utils.write_contents_to_file(get_experiment_report_filename(), experiment_result_string)
-
-
 
 def generate_confusion_matrix():
     class_names = pickle.load(open(get_class_filename(), 'rb'))[:10]

@@ -69,8 +69,22 @@ def get_confusion_matrix_filename():
 
 def get_model_filename():
     suffix_name = get_suffix_name()
-    filename  = "{}{}".format(model_filename, suffix_name)
+    filename = "{}{}".format(model_filename, suffix_name)
     return os.path.join(FLAGS.results_folder, filename)
+
+def get_tensorboard_directory():
+    tensorboard_root_folder = os.path.join(FLAGS.results_folder, "tensorboard/")
+    if not os.path.exists(tensorboard_root_folder):
+        os.mkdir(tensorboard_root_folder)
+
+    suffix_name = get_suffix_name()
+    filename = "{}{}".format(model_filename, suffix_name)
+    dirpath = os.path.join(tensorboard_root_folder, filename) + "/"
+
+    if not os.path.exists(dirpath):
+        os.mkdir(dirpath)
+    return dirpath
+
 
 def get_model_weights_filename():
     suffix_name = get_suffix_name()

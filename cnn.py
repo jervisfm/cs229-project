@@ -166,7 +166,7 @@ def model_v3():
     classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return classifier    
 
-def model_v2_dense_256():
+def model_v4():
     # model_v2() only has 1 conv layer compared to 2 conv layers in model()
     # Based on code snippets from https://becominghuman.ai/building-an-image-classifier-using-deep-learning-in-python-totally-from-a-beginners-perspective-be8dbaf22dd8
     print ('Using model version 2 dense 256')
@@ -246,6 +246,10 @@ def main():
     # add flags to switch model
     if FLAGS.model_version == 2:
         cnn_model = model_v2()
+    if FLAGS.model_version == 3:
+        cnn_model = model_v3()
+    if FLAGS.model_version == 4:
+        cnn_model = model_v4()
     else:
         cnn_model = model()
 

@@ -69,8 +69,22 @@ def get_confusion_matrix_filename():
 
 def get_model_filename():
     suffix_name = get_suffix_name()
-    filename  = "{}{}".format(model_filename, suffix_name)
+    filename = "{}{}".format(model_filename, suffix_name)
     return os.path.join(FLAGS.results_folder, filename)
+
+def get_tensorboard_directory():
+    tensorboard_root_folder = os.path.join(FLAGS.results_folder, "tensorboard/")
+    if not os.path.exists(tensorboard_root_folder):
+        os.mkdir(tensorboard_root_folder)
+
+    suffix_name = get_suffix_name()
+    filename = "{}{}".format(model_filename, suffix_name)
+    dirpath = os.path.join(tensorboard_root_folder, filename) + "/"
+
+    if not os.path.exists(dirpath):
+        os.mkdir(dirpath)
+    return dirpath
+
 
 def get_model_weights_filename():
     suffix_name = get_suffix_name()
@@ -148,6 +162,47 @@ def model_v2():
     classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return classifier    
 
+def model_v3():
+    # model_v3() only has 1 conv layer compared to 2 conv layers in model() and removed max pool
+    # Based on code snippets from https://becominghuman.ai/building-an-image-classifier-using-deep-learning-in-python-totally-from-a-beginners-perspective-be8dbaf22dd8
+    print ('Using model version 3')
+
+    # Initialising the CNN
+    classifier = Sequential()
+    # Step 1 - Convolution
+    classifier.add(Conv2D(14, (3, 3), input_shape=(28, 28, 1), activation='relu'))
+    # Step 3 - Flattening
+    classifier.add(Flatten())
+    # Step 4 - Full connection
+    classifier.add(Dense(units=128, activation='relu'))
+    classifier.add(Dense(get_num_classes(), activation='softmax'))
+    # Compiling the CNN
+    classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+    return classifier    
+
+def model_v4():
+    # model_v2() only has 1 conv layer compared to 2 conv layers in model()
+    # Based on code snippets from https://becominghuman.ai/building-an-image-classifier-using-deep-learning-in-python-totally-from-a-beginners-perspective-be8dbaf22dd8
+    print ('Using model version 2 dense 256')
+
+    # Initialising the CNN
+    classifier = Sequential()
+    # Step 1 - Convolution
+    classifier.add(Conv2D(14, (3, 3), input_shape=(28, 28, 1), activation='relu'))
+    # Step 2 - Pooling
+    classifier.add(MaxPooling2D(pool_size=(2, 2)))
+    # # Adding a second convolutional layer
+    # classifier.add(Conv2D(14, (3, 3), activation='relu'))
+    # classifier.add(MaxPooling2D(pool_size=(2, 2)))
+    # Step 3 - Flattening
+    classifier.add(Flatten())
+    # Step 4 - Full connection
+    classifier.add(Dense(units=256, activation='relu'))
+    classifier.add(Dense(get_num_classes(), activation='softmax'))
+    # Compiling the CNN
+    classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+    return classifier 
+
 def get_onehot_vector(index, num_classes):
     result = np.zeros(num_classes)
     result[index] = 1
@@ -205,6 +260,10 @@ def main():
     # add flags to switch model
     if FLAGS.model_version == 2:
         cnn_model = model_v2()
+    if FLAGS.model_version == 3:
+        cnn_model = model_v3()
+    if FLAGS.model_version == 4:
+        cnn_model = model_v4()
     else:
         cnn_model = model()
 

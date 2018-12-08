@@ -80,7 +80,7 @@ $ gcloud config set project cs229-2018
 Then you can ssh into the VM with:
 
 ```
-$ gcloud compute ssh --project cs229-2018 --zone "us-west1-b" cs229@cs229-vm-vm
+$ gcloud compute ssh --zone "us-west1-b" cs229@cs229-gpu-vm
 ```
 
 We also use GNU screen for session management. To check for list of available sessions
@@ -649,4 +649,24 @@ Epoch 20/20
 Training time(secs): 5493.44327402
 Max training iterations: 20
 Training time / Max training iterations: 274.672163701Tranfer learning model result  acc: 48.77%
+```
+
+###ResNet50 with 5 max iterations
+
+```
+(166, 'bn5c_branch2a')
+(167, 'activation_141')
+(168, 'res5c_branch2b')
+(169, 'bn5c_branch2b')
+(170, 'activation_142')
+(171, 'res5c_branch2c')
+(172, 'bn5c_branch2c')
+(173, 'add_16')
+(174, 'activation_143')
+('Model metric names: ', ['loss', 'acc'])
+-------------------
+
+Training time(secs): 1012.68207002
+Max training iterations: 5
+Training time / Max training iterations: 202.536414003Tranfer learning model result  acc: 51.00%
 ```

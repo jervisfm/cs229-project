@@ -80,7 +80,7 @@ $ gcloud config set project cs229-2018
 Then you can ssh into the VM with:
 
 ```
-$ gcloud compute ssh --project cs229-2018 --zone "us-west1-b" cs229@cs229-vm-vm
+$ gcloud compute ssh --zone "us-west1-b" cs229@cs229-gpu-vm
 ```
 
 We also use GNU screen for session management. To check for list of available sessions

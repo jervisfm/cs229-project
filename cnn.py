@@ -3,6 +3,7 @@ import pandas
 import time
 import random
 import os
+import keras
 
 import pickle
 from keras.models import Sequential
@@ -15,6 +16,7 @@ from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
+from training_plot import TrainingPlot
 
 
 from sklearn.model_selection import cross_val_score
@@ -85,6 +87,20 @@ def get_tensorboard_directory():
         os.mkdir(dirpath)
     return dirpath
 
+def get_model_name_only():
+    suffix_name = get_suffix_name()
+    filename = "{}{}".format(model_filename, suffix_name)
+    return filename
+
+def get_training_plot_filename():
+    directory = get_tensorboard_directory()
+    return os.path.join(directory, "{}_training_plot_loss.png".format(get_model_name_only()))
+
+def get_tensorboard_callback(frequency=2):
+    logdir = "./" + get_tensorboard_directory()
+    print("Tensorboard logdir: ", logdir)
+    return keras.callbacks.TensorBoard(log_dir=logdir, histogram_freq=frequency,
+    write_graph=True, write_images=True)
 
 def get_model_weights_filename():
     suffix_name = get_suffix_name()
@@ -224,6 +240,8 @@ def main():
     np.random.seed(seed)
     random.seed(seed)
 
+
+
     # load dataset
     data = massageData.massageData(folder=FLAGS.data_folder, binarize=FLAGS.using_binarization)
     X, Y = data.getTrain()
@@ -267,7 +285,8 @@ def main():
     else:
         cnn_model = model()
 
-    cnn_model.fit(X, dummy_y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1)
+    plot_losses = TrainingPlot(get_training_plot_filename())
+    cnn_model.fit(X, dummy_y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1, callbacks=[get_tensorboard_callback(), plot_losses], validation_data=(X_dev, dummy_y_dev))
 
     t1 = time.time()
     training_duration_secs = t1 - t0

@@ -620,3 +620,33 @@ Epoch 2/2
 Training time(secs): 887.143157005
 Max training iterations: 2
 ```
+
+
+
+Inception with 20 epochs of training.
+```
+Epoch 12/20
+48000/48000 [==============================] - 132s 3ms/step - loss: 0.0610 - acc: 0.9832
+Epoch 13/20
+48000/48000 [==============================] - 132s 3ms/step - loss: 0.0598 - acc: 0.9839
+Epoch 14/20
+48000/48000 [==============================] - 133s 3ms/step - loss: 0.0585 - acc: 0.9845
+Epoch 15/20
+48000/48000 [==============================] - 132s 3ms/step - loss: 0.0572 - acc: 0.9850
+Epoch 16/20
+48000/48000 [==============================] - 133s 3ms/step - loss: 0.0553 - acc: 0.9861
+Epoch 17/20
+48000/48000 [==============================] - 132s 3ms/step - loss: 0.0547 - acc: 0.9859
+Epoch 18/20
+48000/48000 [==============================] - 132s 3ms/step - loss: 0.0537 - acc: 0.9866
+Epoch 19/20
+48000/48000 [==============================] - 133s 3ms/step - loss: 0.0531 - acc: 0.9862
+Epoch 20/20
+48000/48000 [==============================] - 134s 3ms/step - loss: 0.0519 - acc: 0.9874
+('Model metric names: ', ['loss', 'acc'])
+-------------------
+
+Training time(secs): 5493.44327402
+Max training iterations: 20
+Training time / Max training iterations: 274.672163701Tranfer learning model result  acc: 48.77%
+```

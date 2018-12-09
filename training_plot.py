@@ -45,7 +45,7 @@ class TrainingPlot(keras.callbacks.Callback):
             N = np.arange(0, len(self.losses))
 
             # You can chose the style of your preference
-            print(plt.style.available)
+            #print(plt.style.available)
             plt.style.use("bmh")
 
             # Plot train loss, train acc, val loss and val acc against epochs passed

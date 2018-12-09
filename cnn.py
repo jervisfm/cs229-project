@@ -4,6 +4,7 @@ import time
 import random
 import os
 import keras
+import datetime
 
 import pickle
 from keras.models import Sequential
@@ -85,6 +86,27 @@ def get_tensorboard_directory():
 
     if not os.path.exists(dirpath):
         os.mkdir(dirpath)
+
+    now = datetime.datetime.time()
+    now_timestring = now.strftime("%Y%m%d_%H%M%S")
+
+    timestamped_dirpath = os.path.join(dirpath, now_timestring)
+    if not os.path.exists(timestamped_dirpath):
+        os.mkdir(timestamped_dirpath)
+
+    return timestamped_dirpath
+
+def get_training_plots_directory():
+    root_folder = os.path.join(FLAGS.results_folder, "training_plots/")
+    if not os.path.exists(root_folder):
+        os.mkdir(root_folder)
+
+    suffix_name = get_suffix_name()
+    filename = "{}{}".format(model_filename, suffix_name)
+    dirpath = os.path.join(root_folder, filename) + "/"
+
+    if not os.path.exists(dirpath):
+        os.mkdir(dirpath)
     return dirpath
 
 def get_model_name_only():
@@ -93,7 +115,7 @@ def get_model_name_only():
     return filename
 
 def get_training_plot_filename():
-    directory = get_tensorboard_directory()
+    directory = get_training_plots_directory()
     return os.path.join(directory, "{}_training_plot_loss.png".format(get_model_name_only()))
 
 def get_tensorboard_callback(frequency=2):

@@ -670,3 +670,13 @@ Training time(secs): 1012.68207002
 Max training iterations: 5
 Training time / Max training iterations: 202.536414003Tranfer learning model result  acc: 51.00%
 ```
+
+MobileNet Transfer Learning, 3 classes
+```
+-------------------
+Using model: MobileNet
+
+Training time(secs): 10289.715752363205
+Max training iterations: 100
+Training time / Max training iterations: 102.89715752363205Tranfer learning model result  acc: 75.40%
+```

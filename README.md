@@ -77,10 +77,16 @@ each time by running
 $ gcloud config set project cs229-2018
 ```
 
-Then you can ssh into the VM with:
+We now also have a GPU machine instance that we use for training. You can connect to it like so:
 
 ```
 $ gcloud compute ssh --zone "us-west1-b" cs229@cs229-gpu-vm
+```
+
+For the regular CPU only version of the cloud VM, you can access it like so:
+
+```
+$ gcloud compute ssh --zone "us-west1-b" cs229@cs229-vm-vm
 ```
 
 We also use GNU screen for session management. To check for list of available sessions
@@ -681,8 +687,7 @@ Max training iterations: 100
 Training time / Max training iterations: 102.89715752363205Tranfer learning model result  acc: 75.40%
 ```
 
-
-### Model v4 with binaziration
+### CNN Model v4 with binaziration
 This performed very poorly. Not sure if there is an issue with the setup. Got 2% accuracy which is
 just about random. 
 
@@ -699,3 +704,14 @@ Epoch 50/100
 Epoch 51/100
 641500/800000 [=======================>......] - ETA: 2s - loss: 15.7981 - acc: 0.0199^CTraceback (most recent call last):
 ```
+
+## TensorBoard
+For CNN training at least, we have integrated tensor board support. You can view the training logs as follows
+
+```
+$ tensorboard --logdir=results/tensorboard
+```
+
+Note that because the log files can be very large, we do not check these into our version control. These logs
+files will have on the machine(s) that ran the experiments. In this case, this is the google cloud vm. 
+

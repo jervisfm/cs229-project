@@ -77,10 +77,16 @@ each time by running
 $ gcloud config set project cs229-2018
 ```
 
-Then you can ssh into the VM with:
+We now also have a GPU machine instance that we use for training. You can connect to it like so:
 
 ```
 $ gcloud compute ssh --zone "us-west1-b" cs229@cs229-gpu-vm
+```
+
+For the regular CPU only version of the cloud VM, you can access it like so:
+
+```
+$ gcloud compute ssh --zone "us-west1-b" cs229@cs229-vm-vm
 ```
 
 We also use GNU screen for session management. To check for list of available sessions

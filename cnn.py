@@ -241,6 +241,29 @@ def model_v4():
     classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return classifier 
 
+def model_v5():
+    # Like model_v4() but onyl has 64 units in the last layer
+    # Based on code snippets from https://becominghuman.ai/building-an-image-classifier-using-deep-learning-in-python-totally-from-a-beginners-perspective-be8dbaf22dd8
+    print ('Using model version 5 dense 64 units...')
+
+    # Initialising the CNN
+    classifier = Sequential()
+    # Step 1 - Convolution
+    classifier.add(Conv2D(14, (3, 3), input_shape=(28, 28, 1), activation='relu'))
+    # Step 2 - Pooling
+    classifier.add(MaxPooling2D(pool_size=(2, 2)))
+    # # Adding a second convolutional layer
+    # classifier.add(Conv2D(14, (3, 3), activation='relu'))
+    # classifier.add(MaxPooling2D(pool_size=(2, 2)))
+    # Step 3 - Flattening
+    classifier.add(Flatten())
+    # Step 4 - Full connection
+    classifier.add(Dense(units=64, activation='relu'))
+    classifier.add(Dense(get_num_classes(), activation='softmax'))
+    # Compiling the CNN
+    classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+    return classifier 
+
 def get_onehot_vector(index, num_classes):
     result = np.zeros(num_classes)
     result[index] = 1
@@ -304,6 +327,8 @@ def main():
         cnn_model = model_v3()
     if FLAGS.model_version == 4:
         cnn_model = model_v4()
+    if FLAGS.model_version == 5:
+        cnn_model = model_v5()
     else:
         cnn_model = model()
 

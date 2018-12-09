@@ -751,3 +751,7 @@ Epoch 8/100
 Epoch 9/100
 41000/48000 [========================>.....] - ETA: 13:46 - loss: 0.1857 - acc: 0.9282
 ```
+
+## CNN Network Model Architecture
+CNN network with 2 convolution layers.
+![CNN_network](https://github.com/jervisfm/cs229-project/blob/master/cnn-model-network-architecture.png)

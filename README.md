@@ -680,3 +680,16 @@ Training time(secs): 10289.715752363205
 Max training iterations: 100
 Training time / Max training iterations: 102.89715752363205Tranfer learning model result  acc: 75.40%
 ```
+
+
+## TensorBoard
+For CNN training at least, we have integrated tensor board support. You can view the training logs as follows
+
+```
+$ tensorboard --logdir=results/tensorboard
+```
+
+Note that because the log files can be very large, we do not check these into our version control. These logs
+files will have on the machine(s) that ran the experiments. In this case, this is the google cloud vm. 
+
+

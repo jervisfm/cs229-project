@@ -22,6 +22,13 @@ class TrainingPlot(keras.callbacks.Callback):
         self.val_acc = []
         self.logs = []
 
+    def normalize_values(self, x):
+        max_value = max(x)
+        scaled_x = []
+        for item in enumerate(x):
+            scaled_x.append(item/max_value)
+        return scaled_x
+
     # This function is called at the end of each epoch
     def on_epoch_end(self, epoch, logs={}):
 
@@ -38,8 +45,8 @@ class TrainingPlot(keras.callbacks.Callback):
             N = np.arange(0, len(self.losses))
 
             # You can chose the style of your preference
-            # print(plt.style.available) to see the available options
-            plt.style.use("seaborn")
+            print(plt.style.available)
+            plt.style.use("bmh")
 
             # Plot train loss, train acc, val loss and val acc against epochs passed
             plt.figure()
@@ -53,5 +60,31 @@ class TrainingPlot(keras.callbacks.Callback):
             plt.legend()
             # Make sure there exists a folder called output in the current directory
             # or replace 'output' with whatever direcory you want to put in the plots
-            plt.savefig(self.filename)
+            plt.savefig(self.filename + "_loss_accuracy.png")
+            plt.close()
+
+            # Plot only accuracies.
+            plt.figure()
+            plt.plot(N, self.acc, label="train_acc")
+            plt.plot(N, self.val_acc, label="val_acc")
+            plt.title("Training and Validation Accuracy [Epoch {}]".format(epoch))
+            plt.xlabel("Epoch #")
+            plt.ylabel("Accuracy")
+            plt.legend()
+            # Make sure there exists a folder called output in the current directory
+            # or replace 'output' with whatever direcory you want to put in the plots
+            plt.savefig(self.filename + "_accuracy.png")
+            plt.close()
+
+            # Plot ony loss.
+            plt.figure()
+            plt.plot(N, self.losses, label="train_loss")
+            plt.plot(N, self.val_losses, label="val_loss")
+            plt.title("Training and Validation Loss [Epoch {}]".format(epoch))
+            plt.xlabel("Epoch #")
+            plt.ylabel("Loss")
+            plt.legend()
+            # Make sure there exists a folder called output in the current directory
+            # or replace 'output' with whatever direcory you want to put in the plots
+            plt.savefig(self.filename + "_loss.png")
             plt.close()

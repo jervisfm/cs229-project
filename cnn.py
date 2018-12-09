@@ -116,7 +116,7 @@ def get_model_name_only():
 
 def get_training_plot_filename():
     directory = get_training_plots_directory()
-    return os.path.join(directory, "{}_training_plot_loss.png".format(get_model_name_only()))
+    return os.path.join(directory, "{}_training_plot".format(get_model_name_only()))
 
 def get_tensorboard_callback(frequency=2):
     logdir = "./" + get_tensorboard_directory()

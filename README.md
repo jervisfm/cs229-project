@@ -680,3 +680,22 @@ Training time(secs): 10289.715752363205
 Max training iterations: 100
 Training time / Max training iterations: 102.89715752363205Tranfer learning model result  acc: 75.40%
 ```
+
+
+### Model v4 with binaziration
+This performed very poorly. Not sure if there is an issue with the setup. Got 2% accuracy which is
+just about random. 
+
+```
+800000/800000 [==============================] - 11s 13us/step - loss: 15.7957 - acc: 0.0200 - val_loss: 15.7957 - val_acc: 0.0200
+Epoch 47/100
+800000/800000 [==============================] - 11s 13us/step - loss: 15.7957 - acc: 0.0200 - val_loss: 15.7957 - val_acc: 0.0200
+Epoch 48/100
+800000/800000 [==============================] - 11s 13us/step - loss: 15.7957 - acc: 0.0200 - val_loss: 15.7957 - val_acc: 0.0200
+Epoch 49/100
+800000/800000 [==============================] - 10s 13us/step - loss: 15.7957 - acc: 0.0200 - val_loss: 15.7957 - val_acc: 0.0200
+Epoch 50/100
+800000/800000 [==============================] - 11s 13us/step - loss: 15.7957 - acc: 0.0200 - val_loss: 15.7957 - val_acc: 0.0200
+Epoch 51/100
+641500/800000 [=======================>......] - ETA: 2s - loss: 15.7981 - acc: 0.0199^CTraceback (most recent call last):
+```

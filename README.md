@@ -565,7 +565,13 @@ Epoch 79/100
 * This is the first model and it used 2 convolutions.
 
 ### CNN Model v2
-* This is second iteration of the model and we retduce number of convolution to 1 to see what the impact would be.
+* This is the second iteration of the model and we reduce number of convolutions to 1 to see what the impact would be.
+
+### CNN Model v3
+* This is the third iteration of the model. It has only 1 convolution layer and 1 fully connected layer (removed max pooling layer).
+
+### CNN Model v4
+* This is the fourth iteration of the model and we used v2 but had a dense layer of 256 (instead of 128).
 
 
 ## Transfer learning test run

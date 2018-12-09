@@ -87,7 +87,7 @@ def get_tensorboard_directory():
     if not os.path.exists(dirpath):
         os.mkdir(dirpath)
 
-    now = datetime.datetime.time()
+    now = datetime.datetime.now()
     now_timestring = now.strftime("%Y%m%d_%H%M%S")
 
     timestamped_dirpath = os.path.join(dirpath, now_timestring)

@@ -145,7 +145,7 @@ def model():
     return classifier
 
 
-def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include_top=False), tune_source_model=True):
+def transfer_learning(X, y, X_dev,y_dev, source_model=InceptionV3(weights='imagenet', include_top=False), tune_source_model=True):
     # Based on code snippets from:https://keras.io/applications/
     print("Running transfer learning ...")
     # create the base pre-trained model
@@ -175,7 +175,7 @@ def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include
 
     # train the model on the new data for a few epochs
     print("Tuning our last custom layer...")
-    model.fit(X, y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1)
+    model.fit(X, y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1, validation_data=(X_dev, y_dev))
 
     # at this point, the top layers are well trained and we can start fine-tuning
     # convolutional layers from inception V3. We will freeze the bottom N layers
@@ -203,7 +203,7 @@ def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include
     # we train our model again (this time fine-tuning the top 2 inception blocks
     # alongside the top Dense layers
     print("Tuning the last 2 inceptions layers ...")
-    model.fit(X, y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1)
+    model.fit(X, y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1, validation_data=(X_dev, y_dev))
     return  model
 
 def get_onehot_vector(index, num_classes):
@@ -322,7 +322,7 @@ def main():
     X = convertTo3Channels(X, new_image_size)
     print ("Done preprocessing dataset")
 
-    model = transfer_learning(X, dummy_y, source_model, FLAGS.tune_source_model)
+    model = transfer_learning(X, dummy_y, X_dev, dummy_y_dev, source_model, FLAGS.tune_source_model)
 
     t1 = time.time()
     training_duration_secs = t1 - t0

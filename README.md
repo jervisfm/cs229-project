@@ -715,3 +715,33 @@ $ tensorboard --logdir=results/tensorboard
 Note that because the log files can be very large, we do not check these into our version control. These logs
 files will have on the machine(s) that ran the experiments. In this case, this is the google cloud vm. 
 
+### Inception stuck
+Been running for 15h. Could be to lakc of tuning last layers; oalso the google VM was being really slow. May have been on a bad host.
+Systrae was showing it stuck on sched_yield() which emant the threads were effectively refusing to make progress and do useful work and
+thus procastinating
+
+```
+Convert data to shape: (299, 299)
+Convert data to shape: (299, 299)
+Done preprocessing dataset
+Building transfer learning model...
+Tuning our last custom layer...
+Epoch 1/100
+48000/48000 [==============================] - 3444s 72ms/step - loss: 0.3918 - acc: 0.8406
+Epoch 2/100
+48000/48000 [==============================] - 4733s 99ms/step - loss: 0.2413 - acc: 0.9087
+Epoch 3/100
+48000/48000 [==============================] - 6048s 126ms/step - loss: 0.2327 - acc: 0.9118
+Epoch 4/100
+48000/48000 [==============================] - 6082s 127ms/step - loss: 0.2114 - acc: 0.9199
+Epoch 5/100
+48000/48000 [==============================] - 6029s 126ms/step - loss: 0.2078 - acc: 0.9214
+Epoch 6/100
+48000/48000 [==============================] - 6077s 127ms/step - loss: 0.2053 - acc: 0.9205
+Epoch 7/100
+48000/48000 [==============================] - 6042s 126ms/step - loss: 0.1929 - acc: 0.9266
+Epoch 8/100
+48000/48000 [==============================] - 6080s 127ms/step - loss: 0.1886 - acc: 0.9270
+Epoch 9/100
+41000/48000 [========================>.....] - ETA: 13:46 - loss: 0.1857 - acc: 0.9282
+```

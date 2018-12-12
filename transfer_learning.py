@@ -196,7 +196,7 @@ def transfer_learning(X, y, X_dev, y_dev, source_model=InceptionV3(weights='imag
 
     # train the model on the new data for a few epochs
     print("Tuning our last custom layer...")
-    plot_losses = TrainingPlot("tune_our_last_layer_" + get_training_plot_filename())
+    plot_losses = TrainingPlot(get_training_plot_filename() + "_tune_our_last_layer")
     model.fit(X, y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1, validation_data=(X_dev, y_dev), callbacks=[plot_losses])
 
     # at this point, the top layers are well trained and we can start fine-tuning
@@ -225,7 +225,7 @@ def transfer_learning(X, y, X_dev, y_dev, source_model=InceptionV3(weights='imag
     # we train our model again (this time fine-tuning the top 2 inception blocks
     # alongside the top Dense layers
     print("Tuning the last 2 inceptions layers ...")
-    plot_losses = TrainingPlot("tune_transfer_model_last_layer_" + get_training_plot_filename())
+    plot_losses = TrainingPlot( get_training_plot_filename() + "tune_transfer_model_last_layer")
     model.fit(X, y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1,  validation_data=(X_dev, y_dev), callbacks=[plot_losses])
     return  model
 

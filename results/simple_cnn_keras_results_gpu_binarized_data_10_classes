@@ -1,0 +1,6 @@
+-------------------
+
+Training time(secs): 590.2533762454987
+Max training iterations: 100
+Training time / Max training iterations: 5.902533762454986Simple CNN model DEV acc: 87.22%
+Simple CNN model TEST acc: 87.55%

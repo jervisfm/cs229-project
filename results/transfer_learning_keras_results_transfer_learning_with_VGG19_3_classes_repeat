@@ -1,0 +1,6 @@
+-------------------
+Using model: VGG19
+
+Training time(secs): 4140.123324394226
+Max training iterations: 20
+Training time / Max training iterations: 207.0061662197113Tranfer learning model result  acc: 95.58%

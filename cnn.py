@@ -291,6 +291,7 @@ def main():
     data = massageData.massageData(folder=FLAGS.data_folder, binarize=FLAGS.using_binarization)
     X, Y = data.getTrain()
     X_dev, Y_dev = data.getDev()
+    X_test, Y_test = data.getTest()
 
     class_names = utils.get_label(Y_dev)
     # Reshape to CNN format (M, 28, 28, 1) from (M, 784)
@@ -302,6 +303,8 @@ def main():
     X_dev = X_dev.reshape((-1, 28, 28, 1))
     print("X dev shape after: ", X_dev.shape)
 
+    X_test = X_test.reshape((-1, 28, 28, 1))
+    
     print ("Done load dataset")
 
     # do some more preprocessing
@@ -310,7 +313,9 @@ def main():
     # dummy_y will be one-hot encoding of classes
     dummy_y = encode_values(encoder, Y)
     dummy_y_dev = encode_values(encoder, Y_dev)
+    dummy_y_test = encode_values(encoder, Y_test)
     dummy_y_dev_confusion_matrix = encode_values(encoder, Y_dev, forConfusionMatrix=True)
+    dummy_y_test_confusion_matrix = encode_values(encoder, Y_test, forConfusionMatrix=True)
 
     print ('Dummy_y (should be one vector if class numbers):', dummy_y)
 
@@ -343,14 +348,21 @@ def main():
     experiment_result_string += "\nTraining time / Max training iterations: {}".format( 1.0 * training_duration_secs / FLAGS.max_iter)
 
     dummy_y_pred_dev = cnn_model.predict(X_dev)
+    dummy_y_pred_test = cnn_model.predict(X_test)
+
 
     # Need to take argmax to find most likely class.
     dummy_y_pred_dev_class = dummy_y_pred_dev.argmax(axis=-1)
+    dummy_y_pred_test_class = dummy_y_pred_dev.argmax(axis=-1)
 
 
     # evaluate the model
     scores = cnn_model.evaluate(X_dev, dummy_y_dev,  verbose=0)
-    experiment_result_string += "Simple CNN model %s: %.2f%%" % (cnn_model.metrics_names[1], scores[1] * 100)
+    experiment_result_string += "Simple CNN model DEV %s: %.2f%%" % (cnn_model.metrics_names[1], scores[1] * 100)
+
+    scores = cnn_model.evaluate(X_test, dummy_y_test,  verbose=0)
+    experiment_result_string += "\nSimple CNN model TEST %s: %.2f%%" % (cnn_model.metrics_names[1], scores[1] * 100)
+    
 
     print(experiment_result_string)
     utils.write_contents_to_file(get_experiment_report_filename(), experiment_result_string)

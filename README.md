@@ -755,3 +755,48 @@ Epoch 9/100
 ## CNN Network Model Architecture
 CNN network with 2 convolution layers.
 ![CNN_network](https://github.com/jervisfm/cs229-project/blob/master/cnn-model-network-architecture.png)
+
+
+###Inception  transfer learning repeat, 200 epochs total
+--max_iteration=100 but we tune both source model and our own custom layer so overall, had 200 epochs total.
+
+```
+Epoch 99/100
+48000/48000 [==============================] - 120s 2ms/step - loss: 4.8579e-04 - acc: 0.9999
+Epoch 100/100
+48000/48000 [==============================] - 120s 3ms/step - loss: 3.6866e-04 - acc: 1.0000
+('Model metric names: ', ['loss', 'acc'])
+Training time(secs): 23094.9305902
+Max training iterations: 100
+Training time / Max training iterations: 230.949305902Tranfer learning model result  acc: 41.67%
+```
+
+
+### Inception transfer learning repeat, 100 epochs total
+--max_iteration=50, but we tune both source moudel and custom layer so overall is 100 epochs total.
+nax accuracy 45%.
+```
+Epoch 43/50
+48000/48000 [==============================] - 225s 5ms/step - loss: 0.0029 - acc: 1.0000 - val_loss: 8.6998 - val_acc: 0.4565
+Epoch 44/50
+48000/48000 [==============================] - 241s 5ms/step - loss: 0.0030 - acc: 0.9999 - val_loss: 8.6987 - val_acc: 0.4570
+Epoch 45/50
+48000/48000 [==============================] - 249s 5ms/step - loss: 0.0029 - acc: 1.0000 - val_loss: 8.6974 - val_acc: 0.4572
+Epoch 46/50
+48000/48000 [==============================] - 232s 5ms/step - loss: 0.0028 - acc: 0.9999 - val_loss: 8.6937 - val_acc: 0.4573
+Epoch 47/50
+48000/48000 [==============================] - 402s 8ms/step - loss: 0.0029 - acc: 1.0000 - val_loss: 8.6995 - val_acc: 0.4567
+Epoch 48/50
+48000/48000 [==============================] - 240s 5ms/step - loss: 0.0028 - acc: 1.0000 - val_loss: 8.7022 - val_acc: 0.4560
+Epoch 49/50
+48000/48000 [==============================] - 246s 5ms/step - loss: 0.0027 - acc: 1.0000 - val_loss: 8.6982 - val_acc: 0.4568
+Epoch 50/50
+48000/48000 [==============================] - 244s 5ms/step - loss: 0.0028 - acc: 0.9999 - val_loss: 8.6989 - val_acc: 0.4572
+('Model metric names: ', ['loss', 'acc'])
+-------------------
+
+Training time(secs): 27001.143337
+Max training iterations: 50
+Training time / Max training iterations: 540.02286674Tranfer learning model result  acc: 45.72%
+cs229@cs229-gpu-vm:~/cs229-project$
+```

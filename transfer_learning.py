@@ -17,7 +17,7 @@ from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
-
+from training_plot import TrainingPlot
 
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import KFold
@@ -102,6 +102,28 @@ def get_experiment_report_filename():
     filename =  "{}{}".format("transfer_learning_keras_results", suffix_name)
     return os.path.join(FLAGS.results_folder, filename)
 
+def get_training_plots_directory():
+    root_folder = os.path.join(FLAGS.results_folder, "training_plots/")
+    if not os.path.exists(root_folder):
+        os.mkdir(root_folder)
+
+    suffix_name = get_suffix_name()
+    filename = "{}{}".format(model_filename, suffix_name)
+    dirpath = os.path.join(root_folder, filename) + "/"
+
+    if not os.path.exists(dirpath):
+        os.mkdir(dirpath)
+    return dirpath
+
+def get_model_name_only():
+    suffix_name = get_suffix_name()
+    filename = "{}{}".format(model_filename, suffix_name)
+    return filename
+
+def get_training_plot_filename():
+    directory = get_training_plots_directory()
+    return os.path.join(directory, "{}_training_plot".format(get_model_name_only()))
+
 
 def encode_values(encoder, Y, forConfusionMatrix=False):
     # Use train y to encode
@@ -144,7 +166,7 @@ def model():
     classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return classifier
 
-def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include_top=False), tune_source_model=True):
+def transfer_learning(X, y, X_dev, y_dev, source_model=InceptionV3(weights='imagenet', include_top=False), tune_source_model=True):
     # Based on code snippets from:https://keras.io/applications/
     print("Building transfer learning model...")
     # create the base pre-trained model
@@ -174,7 +196,8 @@ def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include
 
     # train the model on the new data for a few epochs
     print("Tuning our last custom layer...")
-    model.fit(X, y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1)
+    plot_losses = TrainingPlot("tune_our_last_layer_" + get_training_plot_filename())
+    model.fit(X, y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1, validation_data=(X_dev, y_dev), callbacks=[plot_losses])
 
     # at this point, the top layers are well trained and we can start fine-tuning
     # convolutional layers from inception V3. We will freeze the bottom N layers
@@ -202,7 +225,8 @@ def transfer_learning(X, y, source_model=InceptionV3(weights='imagenet', include
     # we train our model again (this time fine-tuning the top 2 inception blocks
     # alongside the top Dense layers
     print("Tuning the last 2 inceptions layers ...")
-    model.fit(X, y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1)
+    plot_losses = TrainingPlot("tune_transfer_model_last_layer_" + get_training_plot_filename())
+    model.fit(X, y, epochs=FLAGS.max_iter, batch_size=FLAGS.batch_size, verbose=1,  validation_data=(X_dev, y_dev), callbacks=[plot_losses])
     return  model
 
 def get_onehot_vector(index, num_classes):
@@ -317,7 +341,7 @@ def main():
     X = convertTo3Channels(X, new_image_size)
     print ("Done preprocessing dataset")
 
-    model = transfer_learning(X, dummy_y, source_model, FLAGS.tune_source_model)
+    model = transfer_learning(X, dummy_y, X_dev, dummy_y_dev, source_model, FLAGS.tune_source_model)
 
     t1 = time.time()
     training_duration_secs = t1 - t0

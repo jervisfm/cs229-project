@@ -800,3 +800,44 @@ Max training iterations: 50
 Training time / Max training iterations: 540.02286674Tranfer learning model result  acc: 45.72%
 cs229@cs229-gpu-vm:~/cs229-project$
 ```
+
+#### VGG
+```
+
+48000/48000 [==============================] - 201s 4ms/step - loss: 0.0285 - acc: 0.9901
+Epoch 18/20
+48000/48000 [==============================] - 201s 4ms/step - loss: 0.0286 - acc: 0.9903
+Epoch 19/20
+48000/48000 [==============================] - 201s 4ms/step - loss: 0.0261 - acc: 0.9913
+Epoch 20/20
+48000/48000 [==============================] - 201s 4ms/step - loss: 0.0227 - acc: 0.9927
+0 input_2
+1 block1_conv1
+2 block1_conv2
+3 block1_pool
+4 block2_conv1
+5 block2_conv2
+6 block2_pool
+7 block3_conv1
+8 block3_conv2
+9 block3_conv3
+10 block3_conv4
+11 block3_pool
+12 block4_conv1
+13 block4_conv2
+14 block4_conv3
+15 block4_conv4
+16 block4_pool
+17 block5_conv1
+18 block5_conv2
+19 block5_conv3
+20 block5_conv4
+21 block5_pool
+Model metric names:  ['loss', 'acc']
+-------------------
+Using model: VGG19
+
+Training time(secs): 4140.123324394226
+Max training iterations: 20
+Training time / Max training iterations: 207.0061662197113Tranfer learning model result  acc: 95.58%
+```

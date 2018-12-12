@@ -277,6 +277,7 @@ def main():
     data = massageData.massageData(folder=FLAGS.data_folder, binarize=FLAGS.using_binarization)
     X, Y = data.getTrain()
     X_dev, Y_dev = data.getDev()
+    X_test, Y_test = data.getTest()
 
     class_names = utils.get_label(Y_dev)
     # Reshape to CNN format (M, 28, 28, 1) from (M, 784)
@@ -288,6 +289,8 @@ def main():
     X_dev = X_dev.reshape((-1, 28, 28, 1))
     print("X dev shape after: ", X_dev.shape)
 
+    X_test = X_dev.reshape((-1, 28, 28, 1))
+
     print("Converting to 3 channnels...")
     
     print ("Done load dataset")
@@ -297,6 +300,8 @@ def main():
     # dummy_y will be one-hot encoding of classes
     dummy_y = encode_values(encoder, Y)
     dummy_y_dev = encode_values(encoder, Y_dev)
+    dummy_y_test = encode_values(encoder, Y_test)
+    dummy_y_test_confusion_matrix = encode_values(encoder, Y_test, forConfusionMatrix=True)
     dummy_y_dev_confusion_matrix = encode_values(encoder, Y_dev, forConfusionMatrix=True)
 
     print ('Dummy_y (should be one vector if class numbers):', dummy_y)
@@ -308,6 +313,7 @@ def main():
 
     print("Converting input images for transfer learning...")
     X_dev = convertTo3Channels(X_dev, new_image_size)
+    X_test = convertTo3Channels(X_test, new_image_size)
     X = convertTo3Channels(X, new_image_size)
     print ("Done preprocessing dataset")
 
@@ -322,15 +328,20 @@ def main():
     experiment_result_string += "\nTraining time / Max training iterations: {}".format( 1.0 * training_duration_secs / FLAGS.max_iter)
 
     dummy_y_pred_dev = model.predict(X_dev)
+    dummy_y_pred_test = model.predict(X_test)
 
     # Need to take argmax to find most likely class.
     dummy_y_pred_dev_class = dummy_y_pred_dev.argmax(axis=-1)
+    dummy_y_pred_test_class = dummy_y_pred_dev.argmax(axis=-1)
 
 
     # evaluate the model
     scores = model.evaluate(X_dev, dummy_y_dev,  verbose=0)
     print("Model metric names: ", model.metrics_names)
-    experiment_result_string += "Tranfer learning model result  %s: %.2f%%" % (model.metrics_names[1], scores[1] * 100)
+    experiment_result_string += "Tranfer learning model result DEV  %s: %.2f%%" % (model.metrics_names[1], scores[1] * 100)
+
+    scores = model.evaluate(X_test, dummy_y_test,  verbose=0)    
+    experiment_result_string += "Tranfer learning model result TEST  %s: %.2f%%" % (model.metrics_names[1], scores[1] * 100)
 
     print(experiment_result_string)
     utils.write_contents_to_file(get_experiment_report_filename(), experiment_result_string)

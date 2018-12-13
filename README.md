@@ -841,3 +841,27 @@ Training time(secs): 4140.123324394226
 Max training iterations: 20
 Training time / Max training iterations: 207.0061662197113Tranfer learning model result  acc: 95.58%
 ```
+
+
+##### VGG16 test score result
+
+```
+Got accuracy of 95%
+12 block4_conv1
+13 block4_conv2
+14 block4_conv3
+15 block4_conv4
+16 block4_pool
+17 block5_conv1
+18 block5_conv2
+19 block5_conv3
+20 block5_conv4
+21 block5_pool
+Model metric names:  ['loss', 'acc']
+-------------------
+Using model: VGG19
+
+Training time(secs): 5546.821496963501
+Max training iterations: 20
+Training time / Max training iterations: 277.341074848175Tranfer learning model result DEV  acc: 95.57%Tranfer learning model result TEST  acc: 95.57%
+```
